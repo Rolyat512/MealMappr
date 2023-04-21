@@ -1,0 +1,8 @@
+Need to install 
+
+-npm i Sequelize
+-npm i bcrpyt
+-npm i dotenv
+-npm i eslint --save - dev
+-npm i mysql2
+-npm i express 
