@@ -1,8 +1,16 @@
 Need to install 
 
 -npm i Sequelize
+-require sequelize
 -npm i bcrpyt
+-require bcrypt
 -npm i dotenv
+-require dotenv
 -npm i eslint --save - dev
+-require eslint
 -npm i mysql2
+require- mysql2
 -npm i express 
+require express
+-npm i express-handlebars 
+require handlebars 
