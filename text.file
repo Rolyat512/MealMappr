@@ -1,10 +1,1 @@
-Need to install 
-
-
--require sequelize
--require bcrypt
--require dotenv
--require eslint
--require- mysql2
--require express
--require handlebars 
+Need to add Eslint and Prettier before we start coding 
