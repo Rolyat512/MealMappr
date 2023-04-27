@@ -5,6 +5,6 @@ Need to install
 -require bcrypt
 -require dotenv
 -require eslint
-require- mysql2
-require express
-require handlebars 
+-require- mysql2
+-require express
+-require handlebars 
