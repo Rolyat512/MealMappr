@@ -8,16 +8,11 @@
 </head>
 <body class="bg-gray-100">
   <header class="bg-blue-500">
-    <nav class="container mx-auto flex justify-between items-center p-4">
-      <a href="#" class="text-white font-bold text-lg">Meal Planner</a>
-      {{#if (eq currentURL "/login")}}
-      {{else}}
-      <div class="space-x-4">
-        <a href="#" class="text-white">Sign Up</a>
-        <a href="#" class="bg-white text-blue-500 px-4 py-2 rounded">Sign In</a>
-      </div>
-      {{/if}}
-    </nav>
+    <a href="#"
+        ><h1 class="text-white font-bold text-5xl text-center">
+          Meal Planner
+        </h1></a
+      >
   </header>
   <main>
     {{body}}
