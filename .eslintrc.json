@@ -17,6 +17,9 @@
         }
     },
   "rules": {
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "no-trailing-spaces": "error",
+    "no-empty-function": "error",
+    "no-empty": "error"
   }
 }

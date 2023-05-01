@@ -8,7 +8,7 @@ class User extends Model {
     }
   }
 
-  // Boiler plate from 14.21 said to copy/paste basically 
+  
 
   User.init(
     {
