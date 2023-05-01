@@ -5,8 +5,14 @@ class Meal extends Model {}
 
 Meal.init(
     {
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement:true,
+    },
     foodTitle: {
-         type: DataTypes.INTEGER,
+         type: DataTypes.STRING,
          allowNull: false,
          primaryKey: true,
          autoIncrement: true,
