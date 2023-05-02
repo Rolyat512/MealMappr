@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const withAuth = require("../../utils/auth");
 
 // this is the route for the user when clicking the signup button
+// route: users/signup
 router.get("/signup", async (req, res) => {
   try {
     //res.json({message: 'This will be the signup page'} )
@@ -14,12 +15,13 @@ router.get("/signup", async (req, res) => {
   }
 });
 // THEN this route will be for the sign up
+// route: users/signup
 router.post("/signup", async (req, res) => {
   try {
     const dbUserData = await User.create(req.body);
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
 
       res.status(200).json(dbUserData);
     });
@@ -30,6 +32,7 @@ router.post("/signup", async (req, res) => {
 });
 
 // when the user clicks the sign in button, it will bring them to this login page
+// route: users/login
 router.get("/login", async (req, res) => {
   try {
     //res.json({message: 'This will be the login page'} )
@@ -40,6 +43,7 @@ router.get("/login", async (req, res) => {
   }
 });
 // THEN this route checks to see if there is a matching user when clicking login
+// route: users/login
 router.post("/login", async (req, res) => {
   try {
     const dbUserData = await User.findOne({
@@ -65,7 +69,7 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
 
       res
         .status(200)
@@ -79,7 +83,7 @@ router.post("/login", async (req, res) => {
 
 // Logout
 router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
     });
