@@ -9,4 +9,3 @@ router.use('/users', apiRoutes); // call this users so it makes more sense in th
 
 
 module.exports = router;
-
