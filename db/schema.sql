@@ -1,2 +1,4 @@
-DROP DATABASE IF EXISTS mealprep_db;
-CREATE DATABASE mealprep_db;
+DROP DATABASE IF EXISTS
+mealprep_db;
+CREATE DATABASE 
+mealprep_db;
