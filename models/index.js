@@ -10,4 +10,4 @@ Meal.belongsTo(User,{
 foreignKey: 'user_id'
 });
 
-module.exports = {User, Meal};
+module.exports = {User, Meal };
