@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enter Name here of Project</title>
-     <link rel="stylesheet" href="/css/jass.css">
-     <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Planner</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    
+<body class="bg-gray-100">
+  <header class="bg-blue-500">
+    <a href="#"
+        ><h1 class="text-white font-bold text-5xl text-center">
+          Meal Planner
+        </h1></a
+      >
+  </header>
+  <main>
+    {{body}}
+  </main>
+  <footer class="bg-blue-500 py-6">
+    <div class="container mx-auto text-center text-white">
+      <p>&copy; 2023 Meal Planner. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- Render script for logged in users only -->
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+  <script>
 </body>
 </html>
-
-{{!-- Boiler plate HTML:5 --}}
-{{!-- Need to update this more --}}
