@@ -14,8 +14,6 @@ Meal.init(
     foodTitle: {
          type: DataTypes.STRING,
          allowNull: false,
-         primaryKey: true,
-         autoIncrement: true,
     },
     itemDescription: {
         type: DataTypes.STRING,
@@ -40,7 +38,7 @@ Meal.init(
         type: DataTypes.STRING,
         allowNull: false
     },
-    userID: {
+    user_id: {
         type: DataTypes.INTEGER,
         references: {
             model: 'user',
@@ -48,7 +46,8 @@ Meal.init(
           },
     },
     sequelize,
-    timestamps: false,
+    timestamps: true,
+    createdAt: 'created_at',
     freezeTableName: true,
     underscored: true,
     modelName: 'meal',
