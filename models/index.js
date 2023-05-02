@@ -1,5 +1,6 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("./config/connection");
+const User = require('./user');
 
-class Dish extends Model {}
-// ^ change dish to whatever our database is
+
+
+
+module.exports = { User };
