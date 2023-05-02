@@ -1,10 +1,12 @@
 const router = require('express').Router();
 
-router.get('/', async (req, res) => {
-  res.render('all');
-});
+const apiRoutes = require('./api');
+const homeRoutes = require('./homeRoutes');
+
+router.use('/', homeRoutes);
+router.use('/users', apiRoutes); // call this users so it makes more sense in the url
+
+
 
 module.exports = router;
 
-// Boiler plate code from Act 14.2 
-// Might need to update this one 
