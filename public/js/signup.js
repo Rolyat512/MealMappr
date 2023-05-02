@@ -8,7 +8,8 @@ const signupFormHandler = async (event) => {
     if (password !== confirmpassword) {
       alert("Passwords don't match. Try again.");
     } else {
-      const response = await fetch("/api/users/signup", {
+      const response = await fetch("/users/signup", {
+        // changed route
         method: "POST",
         body: JSON.stringify({ name, email, password }),
         headers: { "Content-Type": "application/json" },
