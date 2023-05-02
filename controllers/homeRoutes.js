@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 });
  
 // route to bring the user to the their homepage after they signup or login 
+// route: /home
 router.get('/home', withAuth, async (req, res) => {
    
     try {
