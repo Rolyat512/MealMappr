@@ -1,6 +1,6 @@
 const loginFormHandler = async (event) => {
     event.preventDefault();
-  
+
     const email = $('#email-login').val().trim();
     const password = $('#password-login').val().trim();
   
@@ -19,5 +19,6 @@ const loginFormHandler = async (event) => {
     }
   };
   
+
   $('#login-form').on('submit', loginFormHandler);
   
