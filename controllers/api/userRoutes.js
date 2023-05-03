@@ -7,6 +7,7 @@ const withAuth = require("../../utils/auth");
 // route: users/signup
 router.get("/signup", async (req, res) => {
   try {
+    // why is the password showing in url -kd will look into just note for myself
     //res.json({message: 'This will be the signup page'} )
     res.render("signup"); //this will be for redner the welcome handlebars layout when the site first loads
   } catch (err) {
