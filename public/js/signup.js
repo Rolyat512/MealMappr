@@ -1,12 +1,21 @@
 const signupFormHandler = async (event) => {
-    event.preventDefault();
-    const name = $("#name-signup").val().trim();
-    const email = $("#email-signup").val().trim();
-    const password = $("#password-signup").val().trim();
-    const confirmpassword = $("#confirmpassword-signup").val().trim();
-    if (name && email && password && confirmpassword) {
-      if (password !== confirmpassword) {
-        alert("Passwords don't match. Try again.");
+  event.preventDefault();
+  const name = $("#name-signup").val().trim();
+  const email = $("#email-signup").val().trim();
+  const password = $("#password-signup").val().trim();
+  const confirmpassword = $("#confirmpassword-signup").val().trim();
+  if (name && email && password && confirmpassword) {
+    if (password !== confirmpassword) {
+      alert("Passwords don't match. Try again.");
+    } else {
+      const response = await fetch("/users/signup", {
+        // changed route
+        method: "POST",
+        body: JSON.stringify({ name, email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (response.ok) {
+        document.location.replace("/home");
       } else {
         const response = await fetch("/users/signup", { // homescreen after logging in 
           method: "POST",
@@ -20,16 +29,8 @@ const signupFormHandler = async (event) => {
         }
       }
     }
-    else {
-      alert("Something went wrong, please try again");
-    }
-  };
-  $("#signup-form").on("submit", signupFormHandler);
-  
-  
-  
-  
-  
-  
-  
-  
+  } else {
+    alert("Something went wrong, please try again");
+  }
+};
+$("#signup-form").on("submit", signupFormHandler);
