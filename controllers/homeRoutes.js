@@ -17,8 +17,8 @@ router.get('/', async (req, res) => {
 router.get('/home', withAuth, async (req, res) => {
    
     try {
-        res.json({message: 'This will be the home page after user is logged in'} )
-        //res.render('homepage',{isLoggedIn:req.session.loggedIn}) //this will be for redner the home handlebars layout 
+        //res.json({message: 'This will be the home page after user is logged in'} )
+        res.render('homepage',{isLoggedIn:req.session.loggedIn}) //this will be for redner the home handlebars layout 
     } catch (err) {
         res.status(400).json({message: 'No homepage found'});
         console.log(err)
