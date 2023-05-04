@@ -9,16 +9,16 @@ const signupFormHandler = async (event) => {
       alert("Passwords don't match. Try again.");
     } else {
       const response = await fetch("/users/signup", {
-        // changed route
         method: "POST",
         body: JSON.stringify({ name, email, password }),
         headers: { "Content-Type": "application/json" },
       });
-      if (response.ok) {
-        document.location.replace("/home");
-      } else {
-        alert("Something went wrong, please try again");
-      }
+        if (response.ok) {
+          document.location.replace('/home');
+        } else {
+          alert("Page not redirected, please try again");
+        }
+      
     }
   } else {
     alert("Something went wrong, please try again");
