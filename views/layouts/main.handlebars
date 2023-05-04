@@ -8,10 +8,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.6/main.min.css"
     />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <script src="https://cdn.tailwindcss.com"></script>
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"
     ></script>
@@ -25,9 +22,49 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
   </head>
   <body class="bg-gray-100">
     <header class="bg-blue-500">
-      <a href="#"><h1 class="text-white font-bold text-5xl text-center">
-          MealMappr
-        </h1></a>
+      <nav
+        class="container mx-auto flex justify-between items-center text-slate-50 p-4"
+      >
+        <a href="/" class="w-4/5 font-bold text-4xl">MealMappr</a>
+        <button
+          class="w-1/5 text-5xl flex justify-center pb-2"
+          id="menu-toggle"
+        >
+          &#9776;
+        </button>
+        <div
+          class="dropdown-menu hidden bg-indigo-600 text-white rounded py-2 absolute right-0 top-20 z-10 text-center"
+          id="dropdown-menu"
+        >
+          {{#if logged_in}}
+            <a
+              href="/profile"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+            >Profile</a>
+            <a
+              href="/settings"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+            >Settings</a>
+            <button
+              id="logout"
+              class="block px-4 w-full py-2 hover:bg-slate-50 hover:text-indigo-600"
+            >Logout</button>
+          {{else}}
+            <a
+              href="/signup"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+            >Sign Up</a>
+            <a
+              href="/login"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+            >Sign In</a>
+          {{/if}}
+          <a
+            href="#"
+            class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+          >Report an issue</a>
+        </div>
+      </nav>
     </header>
     <main>
       {{{body}}}
@@ -41,6 +78,9 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
     {{#if logged_in}}
       <script src="/js/logout.js"></script>
     {{/if}}
-
+    <script>
+      $(document).ready(function() { $('#menu-toggle').on('click', function() {
+      $('#dropdown-menu').toggleClass('hidden'); }); });
+    </script>
   </body>
 </html>
