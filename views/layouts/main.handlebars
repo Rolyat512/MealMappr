@@ -36,7 +36,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
           class="dropdown-menu hidden bg-indigo-600 text-white rounded py-2 absolute right-0 top-20 z-10 text-center"
           id="dropdown-menu"
         >
-          {{#if logged_in}}
+          {{#if isLoggedIn}}
             <a
               href="/profile"
               class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
@@ -75,7 +75,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
       </div>
     </footer>
     <!-- Render script for logged in users only -->
-    {{#if logged_in}}
+    {{#if isLoggedIn}}
       <script src="/js/logout.js"></script>
     {{/if}}
     <script>
