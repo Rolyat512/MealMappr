@@ -1,32 +1,42 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meal Planner</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> <!--kd - imported jquery -->
-</head>
-<body class="bg-gray-100">
-  <header class="bg-blue-500">
-    <a href="#"
-        ><h1 class="text-white font-bold text-5xl text-center">
-          Meal Planner
-        </h1></a
-      >
-  </header>
-  <main>
-    {{{body}}}
-  </main>
-  <footer class="bg-blue-500 py-6">
-    <div class="container mx-auto text-center text-white">
-      <p>&copy; 2023 Meal Planner. All rights reserved.</p>
-    </div>
-  </footer>
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Planner</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"
+    ></script>
+    <!--kd - imported jquery -->
+  </head>
+  <body class="bg-gray-100">
+    <header class="bg-blue-500">
+      <a href="#"><h1 class="text-white font-bold text-5xl text-center">
+          MealMappr
+        </h1></a>
+    </header>
+    <main>
+      {{{body}}}
+    </main>
+    <footer class="bg-blue-500 py-6">
+      <div class="container mx-auto text-center text-white">
+        <p>&copy; 2023 MealMappr. All rights reserved.</p>
+      </div>
+    </footer>
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
+
+  </body>
 </html>
