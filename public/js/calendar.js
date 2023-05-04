@@ -23,7 +23,6 @@ $(document).ready(function () {
       },
       dateClick: function (info) {
         const openModal = document.getElementById('myModal')
-        console.log(ok)
         console.log(info)
         openModal.classList.remove('hidden') // removes hidden modal
         
