@@ -5,7 +5,7 @@ const logout = async () => {
     });
   
     if (response.ok) {
-      document.location.replace('/'); // changed route to root
+      document.location.replace('/'); // welcome page
     } else {
       alert(response.statusText);
     }
