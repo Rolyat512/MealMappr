@@ -1,13 +1,38 @@
 $(document).ready(function () {
     var calendar = $('#calendar');
     var calendar = new FullCalendar.Calendar(calendar[0], {
-      initialView: 'timeGridWeek',
+      initialView: 'dayGridMonth',
+
+      initialDate: new Date(),
+      navLinks: true,
+      editable: true,
+      selectable: true,
       // Add other options and event data here
       events: function(info, successCallback, failureCallback){
         let eventsArr = [
             {
                 title: "Breakfast",
-                date: "2023-05-03"
+                start: "2023-05-03T10:00:00",
+                end: "2023-05-03T11:00:00",
+                color: "green"
+            },
+            {
+                title: "Lunch",
+                start: "2023-05-03T13:00:00",
+                end: "2023-05-03T14:00:00",
+                color: "blue"
+            },
+            {
+                title: "Dinner",
+                start: "2023-05-03T19:00:00",
+                end: "2023-05-03T20:00:00",
+                color: "purple"
+            },
+            {
+                title: "Snack",
+                start: "2023-05-03T16:00:00",
+                end: "2023-05-03T17:00:00",
+                color: "red"
             }
         ]
         successCallback(eventsArr);
@@ -15,7 +40,7 @@ $(document).ready(function () {
 
       customButtons: {
         myCustomButton: {
-          text: 'Add Event',
+          text: 'Add Meal',
           click: function() {
             alert('clicked the custom button!');
           }
