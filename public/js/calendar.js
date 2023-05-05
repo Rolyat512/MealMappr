@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    var calendar = $('#calendar');
-    var calendar = new FullCalendar.Calendar(calendar[0], {
+    var calendarEl = $('#calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl[0], {
       initialView: 'dayGridMonth',
 
       initialDate: new Date(),
@@ -38,14 +38,14 @@ $(document).ready(function () {
         successCallback(eventsArr);
       },
 
-      customButtons: {
-        myCustomButton: {
-          text: 'Add Meal',
-          click: function() {
-            alert('clicked the custom button!');
-          }
-        }
-      },
+    //   customButtons: {
+    //     myCustomButton: {
+    //       text: 'Add Meal',
+    //       click: function() {
+    //         alert('clicked the custom button!');
+    //       }
+    //     }
+    //   },
       dateClick: function (info) {
         const openModal = document.getElementById('myModal')
         console.log(info)
@@ -54,12 +54,15 @@ $(document).ready(function () {
       
       },
       headerToolbar: {
-        left: 'prev,next today myCustomButton',
+        // left: 'prev,next today myCustomButton',
+        left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
       }
 
     });
     calendar.render();
-  });
 
+
+    document.querySelector('style').textContent += "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
+  });
