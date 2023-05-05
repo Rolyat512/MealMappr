@@ -78,6 +78,7 @@ $(document).ready(function () {
         const newEvent = await response.json();
         calendar.addEvent(newEvent);
         myModal.addClass("hidden");
+        location.reload();
       } else {
         throw new Error("Failed to add meal");
       }
