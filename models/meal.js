@@ -11,6 +11,10 @@ Meal.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
     foodTitle: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -34,7 +38,7 @@ Meal.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Categories: {
+    mealType: {
       type: DataTypes.STRING,
       allowNull: false,
     },
