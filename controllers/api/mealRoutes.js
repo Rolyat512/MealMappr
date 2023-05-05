@@ -1,18 +1,32 @@
 const router = require("express").Router();
 const { Meal } = require("../../models");
 
+// POST a meal route
+router.post("/api/meals", async (req, res) => {
+    try {
+      const dbMeals = await Meal.create(req.body);
+  
+      res.status(200).json(dbMeals);
+  
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
+  
 
-router.post("/home", async (req, res) => {
-try {
-    const dbMeals = await Meal.create(req.body);
 
-    res.status(200).json(dbMeals);
+// router.post("/home", async (req, res) => {
+// try {
+//     const dbMeals = await Meal.create(req.body);
 
-} catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-}
-});
+//     res.status(200).json(dbMeals);
+
+// } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+// }
+// });
 
 
 // router.put('/home/:id', withAuth, async (req, res) => {
