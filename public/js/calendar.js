@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var calendar = $('#calendar');
     var calendar = new FullCalendar.Calendar(calendar[0], {
-      initialView: 'timeGridWeek',
+      initialView: 'dayGridMonth',
 
       initialDate: new Date(),
       navLinks: true,
@@ -46,7 +46,13 @@ $(document).ready(function () {
           }
         }
       },
-
+      dateClick: function (info) {
+        const openModal = document.getElementById('myModal')
+        console.log(info)
+        openModal.classList.remove('hidden') // removes hidden modal
+        
+      
+      },
       headerToolbar: {
         left: 'prev,next today myCustomButton',
         center: 'title',
@@ -56,5 +62,4 @@ $(document).ready(function () {
     });
     calendar.render();
   });
-
 
