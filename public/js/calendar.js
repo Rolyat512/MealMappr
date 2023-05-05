@@ -2,13 +2,14 @@ $(document).ready(function () {
     var calendarEl = $('#calendar');
     var calendar = new FullCalendar.Calendar(calendarEl[0], {
       initialView: 'dayGridMonth',
-
+    
     initialDate: new Date(),
     navLinks: true,
     editable: true,
     selectable: true,
     // Add other options and event data here
-    events: function (info, successCallback, failureCallback) {
+    events: 
+    function (info, successCallback, failureCallback) {
       let eventsArr = [
         {
           title: "Breakfast",
@@ -37,7 +38,6 @@ $(document).ready(function () {
       ];
       successCallback(eventsArr);
     },
-
     // customButtons: {
     //   myCustomButton: {
     //     text: "Add Meal",
@@ -46,7 +46,7 @@ $(document).ready(function () {
     //     },
     //   },
     // },
-    
+
     dateClick: function (info) {
       const openModal = document.getElementById("myModal");
       console.log(info);
