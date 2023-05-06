@@ -1,42 +1,42 @@
-[
-  {
-    "date": "2023-05-03",
-    "foodTitle": "Breakfast",
-    "itemDescription": "Omelette with vegetables",
-    "proteinValue": 20,
-    "Calories": 300,
-    "Carbs": 10,
-    "mealType": "Breakfast",
-    "user_id": 1
-  },
-  {
-    "date": "2023-05-03",
-    "foodTitle": "Lunch",
-    "itemDescription": "Grilled chicken salad",
-    "proteinValue": 30,
-    "Calories": 350,
-    "Carbs": 15,
-    "mealType": "Lunch",
-    "user_id": 1
-  },
-  {
-    "date": "2023-05-03",
-    "foodTitle": "Dinner",
-    "itemDescription": "Salmon with quinoa",
-    "proteinValue": 35,
-    "Calories": 500,
-    "Carbs": 40,
-    "mealType": "Dinner",
-    "user_id": 1
-  },
-  {
-    "date": "2023-05-03",
-    "foodTitle": "Snack",
-    "itemDescription": "Greek yogurt with honey",
-    "proteinValue": 12,
-    "Calories": 150,
-    "Carbs": 20,
-    "mealType": "Snack",
-    "user_id": 1
-  }
-]
+// [
+//   {
+//     "date": "2023-05-03",
+//     "foodTitle": "Breakfast",
+//     "itemDescription": "Omelette with vegetables",
+//     "proteinValue": 20,
+//     "Calories": 300,
+//     "Carbs": 10,
+//     "mealType": "Breakfast",
+//     "user_id": 1
+//   },
+//   {
+//     "date": "2023-05-03",
+//     "foodTitle": "Lunch",
+//     "itemDescription": "Grilled chicken salad",
+//     "proteinValue": 30,
+//     "Calories": 350,
+//     "Carbs": 15,
+//     "mealType": "Lunch",
+//     "user_id": 1
+//   },
+//   {
+//     "date": "2023-05-03",
+//     "foodTitle": "Dinner",
+//     "itemDescription": "Salmon with quinoa",
+//     "proteinValue": 35,
+//     "Calories": 500,
+//     "Carbs": 40,
+//     "mealType": "Dinner",
+//     "user_id": 1
+//   },
+//   {
+//     "date": "2023-05-03",
+//     "foodTitle": "Snack",
+//     "itemDescription": "Greek yogurt with honey",
+//     "proteinValue": 12,
+//     "Calories": 150,
+//     "Carbs": 20,
+//     "mealType": "Snack",
+//     "user_id": 1
+//   }
+// ]

@@ -3,20 +3,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meal Planner</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.6/main.min.css"
-    />
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"
     ></script>
 
     <script
-      src="
-https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
-"
+      src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.6/index.global.min.js"
+      integrity="sha512-hNfQGfd5KlxAn+rNdPxQD8cTM6BDTpP44Oy9fxJO0VfSfrjwd0QWLQZhbtCEMDwq99jdMfshh3p3K58lJrH27g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
     <!--kd - imported jquery -->
   </head>
@@ -49,6 +45,10 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
               id="logout"
               class="block px-4 w-full py-2 hover:bg-slate-50 hover:text-indigo-600"
             >Logout</button>
+            <a
+              href="/reportanissue"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+            >Report an issue</a>
           {{else}}
             <a
               href="/users/signup"
@@ -59,10 +59,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js
               class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
             >Sign In</a>
           {{/if}}
-          <a
-            href="/reportanissue"
-            class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
-          >Report an issue</a>
+
         </div>
       </nav>
     </header>

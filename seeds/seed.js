@@ -1,17 +1,17 @@
-const sequelize = require("../config/connection");
-const { Meal } = require("../models");
+// const sequelize = require("../config/connection");
+// const { Meal } = require("../models");
 
-const mealData = require("./mealData.json");
+// const mealData = require("./mealData.json");
 
-const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
+// const seedDatabase = async () => {
+//   await sequelize.sync({ force: true });
 
-  await Meal.bulkCreate(mealData, {
-    individualHooks: true,
-    returning: true,
-  });
+//   await Meal.bulkCreate(mealData, {
+//     individualHooks: true,
+//     returning: true,
+//   });
 
-  process.exit(0);
-};
+//   process.exit(0);
+// };
 
-seedDatabase();
+// seedDatabase();
