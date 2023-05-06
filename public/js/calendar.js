@@ -8,26 +8,30 @@ $(document).ready(function () {
     editable: true,
     selectable: true,
     // Add other options and event data here
-    events: async function (info, successCallback, failureCallback) {
-      try {
-        //fetch meals from server and format it to a FullCalendar event format
-        const response = await fetch("/users/meals", {
-          method: "GET",
-        });
-        if (response.status === 200) {
-          const events = await response.json();
-          const formattedEvents = events.map((meal) => ({
-            title: meal.foodTitle,
-            start: meal.date,
-            end: meal.date,
-          }));
-          successCallback(formattedEvents);
-        } else {
-          failureCallback("Failed to fetch events");
+    events: function (info, successCallback, failureCallback) {
+      const fetchEvents = async () => {
+        try {
+          // Fetch meals from server and format them to FullCalendar event format
+          const response = await fetch("/users/meals", {
+            method: "GET",
+          });
+          if (response.status === 200) {
+            const events = await response.json();
+            const formattedEvents = events.map((meal) => ({
+              title: meal.foodTitle,
+              start: meal.date,
+              end: meal.date,
+            }));
+            successCallback(formattedEvents);
+          } else {
+            failureCallback("Failed to fetch events");
+          }
+        } catch (error) {
+          failureCallback("Error fetching events: " + error);
         }
-      } catch (error) {
-        failureCallback("Error fetching events: " + error);
-      }
+      };
+    
+      fetchEvents();
     },
     // This function runs when a date is clicked, sets the date value in the modal, and displays the modal
     dateClick: function (info) {
