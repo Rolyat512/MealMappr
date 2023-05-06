@@ -30,7 +30,7 @@ $(document).ready(function () {
           failureCallback("Error fetching events: " + error);
         }
       };
-    
+
       fetchEvents();
     },
     // This function runs when a date is clicked, sets the date value in the modal, and displays the modal
@@ -49,7 +49,8 @@ $(document).ready(function () {
   });
   calendar.render();
 
-  document.querySelector('style').textContent += "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
+  document.querySelector("style").textContent +=
+    "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
 
   // This code block sets up the behavior of the modal when it is closed
   const myModal = $("#myModal");
