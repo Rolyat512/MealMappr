@@ -1,21 +1,13 @@
 {
-    "root": true,
+  // Prevent ESLint from looking at parent directories
+  "root": true,
   "env": {
     "browser": true,
     "commonjs": true,
     "node": true,
+    // Add support for ES6 features
     "es6": true
   },
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true,
-            "modules": true,
-            "experimentalObjectRestSpread": true
-        }
-    },
   "rules": {
     "no-duplicate-case": "error",
     "no-empty": "error",
