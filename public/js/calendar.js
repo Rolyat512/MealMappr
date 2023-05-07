@@ -176,9 +176,10 @@ $(document).ready(function () {
         headers: { 'Content-Type': 'application/json' },
     });
     if(response.ok) {
+      alert("Your meal has been deleted successfully.")
         document.location.replace('/home');
     } else {
-        alert("Delete unsuccessful.  Please try again.")
+      alert("Delete unsuccessful.  Please try again.")
     }
   };
   const removeMeal = $('#deleteMeal');
