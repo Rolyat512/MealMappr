@@ -12,7 +12,7 @@ Meal.init(
       autoIncrement: true,
     },
     date: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     foodTitle: {
@@ -52,7 +52,7 @@ Meal.init(
   },
   {
     sequelize,
-    timestamps: true,
+    timestamps: false, //maybe false
     createdAt: "created_at",
     freezeTableName: true,
     underscored: true,
