@@ -12,7 +12,7 @@ Meal.init(
       autoIncrement: true,
     },
     date: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     foodTitle: {

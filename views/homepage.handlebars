@@ -18,7 +18,7 @@
         class="w-full mb-4 py-1 px-2 border rounded"
       >
         <option value="breakfast">Breakfast</option>
-        <option value="dinner">Snack</option>
+        <option value="snack">Snack</option>
         <option value="lunch">Lunch</option>
         <option value="dinner">Dinner</option>
       </select>
@@ -75,5 +75,105 @@
     </form>
   </div>
 </div>
+
+
+{{!modal for allowing you to see event info (user input for meals)}}
+{{#if meals}}
+<div id="modalReview" class="fixed inset-0 bg-black bg-opacity-40 z-50"> {{!hidden class was here}}
+  <div class="w-4/5 md:w-3/5 lg:w-2/5 bg-white mx-auto mt-20 rounded shadow-lg">
+    <div class="flex justify-between items-center p-4 border-b">
+      <h2 class="text-lg font-semibold">Review Meal</h2>
+      <span
+        id="closeReview"
+        class="text-xl font-bold cursor-pointer"
+      >&times;</span>
+    </div>
+  
+    <form id="meal-review" class="p-4">
+      <input type="text" id="reviewDate" name="reviewDate" value="{{meals.id}}" hidden/>
+      <label for="meal-type" class="block mb-1">Meal Type:</label>
+      <select
+        value="{{meals.mealType}}"
+        name="mealType"
+        id="review-mealtype"
+        class="w-full mb-4 py-1 px-2 border rounded"
+      >
+        <option>{{meals.mealType}}</option> {{!need to fix this, if i use a #each it dupilcates the form, needs to be a #if, but now i will have duplicate of one of the options}}
+        <option value="breakfast">Breakfast</option>
+        <option value="snack">Snack</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+      
+      </select>
+      <label for="foodTitle" class="block mb-1">Meal Name:</label>
+      <input
+        type="text"
+        id="reviewFoodTitle"
+        name="foodTitle"
+        class="w-full mb-4 py-1 px-2 border rounded"
+        value="{{meals.foodTitle}}"
+      />
+
+      <label for="itemDescription" class="block mb-1">Description:</label>
+      <input
+        type="text"
+        id="reviewItemDescription"
+        name="itemDescription"
+        class="w-full mb-4 py-1 px-2 border rounded"
+        placeholder="Enter meal description"
+        value="{{meals.itemDescription}}"
+      />
+
+      <label for="proteinValue" class="block mb-1">Protein:</label>
+      <input
+        type="text"
+        id="reviewProteinValue"
+        name="proteinValue"
+        class="w-full mb-4 py-1 px-2 border rounded"
+        placeholder="Enter protein value"
+        value="{{meals.proteinValue}}"
+      />
+
+      <label for="Calories" class="block mb-1">Calories:</label>
+      <input
+        type="text"
+        id="reviewCalories"
+        name="Calories"
+        class="w-full mb-4 py-1 px-2 border rounded"
+        placeholder="Enter calorie value"
+        value="{{meals.Calories}}"
+      />
+
+      <label for="Carbs" class="block mb-1">Carbs:</label>
+      <input
+        type="text"
+        id="reviewCarbs"
+        name="Carbs"
+        class="w-full mb-4 py-1 px-2 border rounded"
+        placeholder="Enter carb value"
+        value="{{meals.Carbs}}"
+      />
+     
+      <button
+        id="updateMeal"
+        type="submit"
+        class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded"
+      >
+        Update Meal
+      </button>
+    </form>
+      <button
+        id="deleteMeal"
+        type="submit"
+        class="bg-red-600 hover:bg-red-800 text-white py-1 px-4 rounded"
+        style='margin: 3%'
+      >
+        Delete Meal
+      </button>
+  </div>
+</div>
+ {{/if}}
+
+
 
 <script src="/js/calendar.js"></script>
