@@ -48,6 +48,33 @@ router.get("/settings", withAuth, async (req, res) => {
   }
 });
 
+router.get("/about", async (req, res) => {
+  try {
+    res.render("about"); //this will be for redner the home handlebars layout
+  } catch (err) {
+    res.status(400).json({ message: "No homepage found" });
+    console.log(err);
+  }
+});
+
+router.get("/contact", async (req, res) => {
+  try {
+    res.render("contact"); //this will be for redner the home handlebars layout
+  } catch (err) {
+    res.status(400).json({ message: "No homepage found" });
+    console.log(err);
+  }
+});
+
+router.get("/faq", async (req, res) => {
+  try {
+    res.render("faq"); //this will be for redner the home handlebars layout
+  } catch (err) {
+    res.status(400).json({ message: "No homepage found" });
+    console.log(err);
+  }
+});
+
 // when user clicks the acount settings button
 // router.get('/home/settings', withAuth, async (req, res) => {
 //     try {
