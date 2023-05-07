@@ -10,7 +10,7 @@ $(document).ready(function () {
     editable: true,
     selectable: true,
     // Add other options and event data here
-    events: async function (info, successCallback, failureCallback) {
+    events: async (info, successCallback, failureCallback) => {
       try {
         //fetch meals from server and format it to a FullCalendar event format
         const response = await fetch("/users/meals", {
@@ -70,6 +70,9 @@ $(document).ready(function () {
   });
   calendar.render();
 
+  document.querySelector("style").textContent +=
+    "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
+
   // This code block sets up the behavior of the modal when it is closed
   const myModal = $("#myModal");
   const closeModal = $("#closeModal");
@@ -112,6 +115,7 @@ $(document).ready(function () {
         console.log(newEvent)
         calendar.addEvent(newEvent);
         myModal.addClass("hidden");
+        location.reload();
       } else {
         throw new Error("Failed to add meal");
       }

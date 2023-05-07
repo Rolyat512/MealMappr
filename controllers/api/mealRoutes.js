@@ -3,16 +3,16 @@ const { Meal } = require("../../models");
 
 // Define a POST route for creating a meal
 router.post("/meal", async (req, res) => {
-  try {
-    // Create a new meal with the information provided in the request body
-    const dbMeals = await Meal.create(req.body);
-    // Return a JSON response with the newly created meal
-    res.status(200).json(dbMeals);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+    try {
+      // Create a new meal with the information provided in the request body
+      const dbMeals = await Meal.create(req.body);
+      // Return a JSON response with the newly created meal
+      res.status(200).json(dbMeals);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
 
 //GET meals route
 router.get("/meals", async (req, res) => {
