@@ -4,7 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meal Planner</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.6/index.global.min.js"
       integrity="sha512-hNfQGfd5KlxAn+rNdPxQD8cTM6BDTpP44Oy9fxJO0VfSfrjwd0QWLQZhbtCEMDwq99jdMfshh3p3K58lJrH27g=="
@@ -13,46 +15,43 @@
     </script>
   </head>
   <body class="bg-gray-100">
-    <header class="bg-blue-500">
+    <header class="bg-blue-700">
       <nav
-        class="container mx-auto flex justify-between items-center text-slate-50 p-4"
+        class="container mx-auto flex justify-between items-center text-slate-100 p-4"
       >
         <a href="/" class="w-4/5 font-bold text-4xl">MealMappr</a>
-        <button
-          class="w-1/5 text-5xl flex justify-center pb-2"
-          id="menu-toggle"
-        >
+        <button class="text-5xl " id="menu-toggle">
           &#9776;
         </button>
         <div
-          class="dropdown-menu hidden bg-indigo-600 text-white rounded py-2 absolute right-0 top-20 z-10 text-center"
+          class="dropdown-menu hidden bg-blue-700 text-slate-100 rounded py-2 absolute right-0 top-20 z-10 text-center"
           id="dropdown-menu"
         >
           {{#if isLoggedIn}}
             <a
               href="/profile"
-              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
             >Profile</a>
             <a
               href="/settings"
-              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
             >Settings</a>
             <button
               id="logout"
-              class="block px-4 w-full py-2 hover:bg-slate-50 hover:text-indigo-600"
+              class="block px-4 w-full py-2 hover:bg-slate-50 hover:text-blue-700"
             >Logout</button>
             <a
               href="/reportanissue"
-              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
             >Report an issue</a>
           {{else}}
             <a
               href="/users/signup"
-              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
             >Sign Up</a>
             <a
               href="/users/login"
-              class="block px-4 py-2 hover:bg-slate-50 hover:text-indigo-600"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
             >Sign In</a>
           {{/if}}
 
@@ -62,9 +61,14 @@
     <main>
       {{{body}}}
     </main>
-    <footer class="bg-blue-500 py-6">
-      <div class="container mx-auto text-center text-white">
+    <footer class="bg-blue-700 py-6">
+      <div class="container mx-auto text-center text-slate-100">
         <p>&copy; 2023 MealMappr. All rights reserved.</p>
+         <div class="mt-4">
+          <a href="/about" class="mr-4">About</a>
+          <a href="/contact" class="mr-4">Contact</a>
+          <a href="/faq">FAQ</a>
+        </div>
       </div>
     </footer>
     <!-- Render script for logged in users only -->
