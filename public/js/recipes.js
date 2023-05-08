@@ -1,4 +1,4 @@
-const callApi = async (query) => {
+const call3rdPtyApi = async (query) => {
   const options = {
     method: "GET",
     headers: {
@@ -46,22 +46,21 @@ const searchRecipes = async (event) => {
     } else {
       $("#recipe-results").html("Loading...");
 
-      const recipes = await callApi(query);
+      const recipes = await call3rdPtyApi(query);
 
       $("#recipe-results").empty();
       recipes.forEach((recipe) => {
-        const recipeDiv = $("<div>")
-          .addClass(
-            "cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
-          )
-          const labelDiv = $("<div>").html(recipe.recipe.label).addClass("mr-4");
-          const image = $("<img>")
-            .attr({
-              src: recipe.recipe.image,
-              alt: recipe.recipe.label,
-            })
-            .addClass("h-16 w-16 object-contain rounded");
-          recipeDiv.append(labelDiv, image);
+        const recipeDiv = $("<div>").addClass(
+          "cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
+        );
+        const labelDiv = $("<div>").html(recipe.recipe.label).addClass("mr-4");
+        const image = $("<img>")
+          .attr({
+            src: recipe.recipe.image,
+            alt: recipe.recipe.label,
+          })
+          .addClass("h-16 w-16 object-contain rounded");
+        recipeDiv.append(labelDiv, image);
         recipeDiv.on("click", () => displayRecipeModal(recipe.recipe));
         $("#recipe-results").append(recipeDiv);
       });
@@ -69,6 +68,45 @@ const searchRecipes = async (event) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+const getSavedRecipes = async (recipes) => {
+  try {
+    const response = await fetch("/savedRecipes", {
+      method: "GET",
+    });
+    if (response.status === 200) {
+      const recipes = await response.json();
+      return recipes;
+    } else {
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const displayRecipes = async () => {
+  const recipes = await getSavedRecipes();
+  //get handle on container
+  $("#saved-recipes").empty();
+  //create div for each saved recipe we recieve from the api
+  recipes.forEach((recipe) => {
+    const recipeDiv = $("<div>").addClass(
+      "cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
+    );
+    const labelDiv = $("<div>").html(recipe.recipe.label).addClass("mr-4");
+    const image = $("<img>")
+      .attr({
+        src: recipe.recipe.image,
+        alt: recipe.recipe.label,
+      })
+      .addClass("h-16 w-16 object-contain rounded");
+    recipeDiv.append(labelDiv, image);
+    recipeDiv.on("click", () => displayRecipeModal(recipe.recipe));
+    $("#saved-recipes").append(recipeDiv);
+  });
+  //each div should display the same as a searched recipe div
 };
 
 $("form").on("submit", searchRecipes);
