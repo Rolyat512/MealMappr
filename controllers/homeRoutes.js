@@ -75,6 +75,15 @@ router.get("/faq", async (req, res) => {
   }
 });
 
+router.get("/myrecipes", withAuth, async (req, res) => {
+  try {
+    res.render("recipes", { isLoggedIn: req.session.loggedIn });
+  } catch (err) {
+    res.status(400).json({ message: "No homepage found" });
+    console.log(err);
+  }
+});
+
 // when user clicks the acount settings button
 // router.get('/home/settings', withAuth, async (req, res) => {
 //     try {
