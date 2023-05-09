@@ -71,6 +71,7 @@ router.post("/login", async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.user_id = dbUserData.id; // Set the user_id in the session
 
       res
         .status(200)
@@ -92,7 +93,5 @@ router.post("/logout", (req, res) => {
     res.status(404).end();
   }
 });
-
-
 
 module.exports = router;

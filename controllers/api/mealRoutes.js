@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const { Meal } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // Define a POST route for creating a meal
-router.post("/meal", async (req, res) => {
+router.post("/meal", withAuth, async (req, res) => {
     try {
       // Create a new meal with the information provided in the request body
       const newMeal = await Meal.create(req.body);
@@ -15,7 +16,7 @@ router.post("/meal", async (req, res) => {
   });
 
 //GET meals route
-router.get("/meals", async (req, res) => {
+router.get("/meals", withAuth, async (req, res) => {
   try {
     // Find all meals in the database
     const meals = await Meal.findAll();
@@ -28,9 +29,8 @@ router.get("/meals", async (req, res) => {
 // when the event is clicked within the calener
 // this route will find the id of the meal, 
 // and appear in the modal with data
-router.get("/meals/:id", async (req, res) => {
+router.get("/meals/:id", withAuth, async (req, res) => {
   try {
-    // Find all meals in the database
     const meals = await Meal.findByPk(req.params.id, {
       raw: true,
       nest: true
@@ -48,7 +48,7 @@ router.get("/meals/:id", async (req, res) => {
 });
 
 // This route updates the Meal that is equal to the ID
-router.put('/meals/:id', async (req, res) => {
+router.put('/meals/:id', withAuth, async (req, res) => {
   try {
     const updateMeal = await Meal.update( 
       { foodTitle: req.body.foodTitle,
@@ -72,7 +72,7 @@ router.put('/meals/:id', async (req, res) => {
 });
 
 // This route will delete the meal that is equal to the ID
-router.delete('/meals/:id',  async (req, res) => {
+router.delete('/meals/:id', withAuth,  async (req, res) => {
 try {
     const deleteMeal = await Meal.destroy({where: {id: req.params.id}});
     if(!deleteMeal) {

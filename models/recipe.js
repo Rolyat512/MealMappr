@@ -16,7 +16,7 @@ Recipe.init(
       allowNull: false,
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(5000),
       allowNull: false,
     },
     dietLabels: {

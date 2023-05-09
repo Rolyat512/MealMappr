@@ -72,22 +72,25 @@ const searchRecipes = async (event) => {
 
 const getSavedRecipes = async () => {
   try {
-    const response = await fetch("/myrecipes", {
-      method: "GET",
-    });
+    const response = await fetch("/users/myrecipes");
+
     if (response.status === 200) {
       const recipes = await response.json();
+      console.log(response);
+      console.log("------");
+      console.log(recipes);
       return recipes;
     } else {
-      return;
+      throw new Error("Failed to fetch saved recipes");
     }
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.error("Error fetching saved recipes:", error);
   }
 };
 
 const displaySavedRecipes = async () => {
   const recipes = await getSavedRecipes();
+  console.log(recipes);
   //get handle on container
   $("#saved-recipes").empty();
   //create div for each saved recipe we recieve from the api
@@ -129,7 +132,8 @@ $("#save-recipe").on("click", async () => {
     macros: $("#macros").html(),
     //user_id: req.session.user_id,
   };
-  console.log(newRecipe)
+  console.log(newRecipe);
+  console.log("---------");
 
   try {
     const response = await fetch("/users/myrecipes", {
@@ -142,7 +146,10 @@ $("#save-recipe").on("click", async () => {
     // If the meal was successfully added, the new event is added to the calendar and the modal is closed
     if (response.status === 200) {
       const savedRecipe = await response.json();
+      console.log(savedRecipe);
+      console.log("Youre recipe was SAVED!");
       $("#recipe-modal").addClass("hidden");
+      $("#saved-recipes").empty();
 
       displaySavedRecipes();
     } else {
