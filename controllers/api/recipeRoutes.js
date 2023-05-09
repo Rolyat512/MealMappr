@@ -2,31 +2,31 @@ const router = require("express").Router();
 const { Recipe } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-//GET saved recipes route
-router.get("/myrecipes", async (req, res) => {
-  try {
-// Find the logged in user based on the session ID
-const userData = await User.findByPk(req.session.user_id, {
-  attributes: { exclude: ["password"] },
-  //include: [{ model: Recipe }],
-});
+// //GET saved recipes route
+// router.get("/myrecipes", async (req, res) => {
+//   try {
+// // Find the logged in user based on the session ID
+// const userData = await User.findByPk(req.session.user_id, {
+//   attributes: { exclude: ["password"] },
+//   //include: [{ model: Recipe }],
+// });
 
-const user = await userData.get({ plain: true });
+// const user = await userData.get({ plain: true });
 
-// Fetch the escape rooms from the database
-    const savedRecipes = await Recipe.findAll({
-      where: { user_id: req.session.user_id },
-    });
-    if (!savedRecipes) {
-      console.log("no recipes found");
-    }
+// // Fetch the escape rooms from the database
+//     const savedRecipes = await Recipe.findAll({
+//       where: { user_id: req.session.user_id },
+//     });
+//     if (!savedRecipes) {
+//       console.log("no recipes found");
+//     }
 
-    res.status(200).json(savedRecipes);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Error retrieving meals", error: err });
-  }
-});
+//     res.status(200).json(savedRecipes);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: "Error retrieving meals", error: err });
+//   }
+// });
 
 router.post("/myrecipes", withAuth, async (req, res) => {
   try {

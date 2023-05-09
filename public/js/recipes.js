@@ -70,50 +70,50 @@ const searchRecipes = async (event) => {
   }
 };
 
-const getSavedRecipes = async () => {
-  try {
-    const response = await fetch("/users/myrecipes");
+// // const getSavedRecipes = async () => {
+// //   try {
+// //     const response = await fetch("/users/myrecipes");
 
-    if (response.status === 200) {
-      const recipes = await response.json();
-      console.log(response);
-      console.log("------");
-      console.log(recipes);
-      return recipes;
-    } else {
-      return [];
-    }
-  } catch (error) {
-    console.error("Error fetching saved recipes:", error);
-    return [];
-  }
-};
+// //     if (response.status === 200) {
+// //       const recipes = await response.json();
+// //       console.log(response);
+// //       console.log("------");
+// //       console.log(recipes);
+// //       return recipes;
+// //     } else {
+// //       return [];
+// //     }
+// //   } catch (error) {
+// //     console.error("Error fetching saved recipes:", error);
+// //     return [];
+// //   }
+// // };
 
-const displaySavedRecipes = async () => {
-  const recipes = await getSavedRecipes();
-  console.log(recipes);
-  //get handle on container
-  $("#saved-recipes").empty();
-  //create div for each saved recipe we recieve from the api
-  recipes.forEach((recipe) => {
-    const recipeDiv = $("<div>").addClass(
-      "cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
-    );
-    const labelDiv = $("<div>").html(recipe.label).addClass("mr-4");
-    const image = $("<img>")
-      .attr({
-        src: recipe.image,
-        alt: recipe.label,
-      })
-      .addClass("h-16 w-16 object-contain rounded");
-    recipeDiv.append(labelDiv, image);
-    recipeDiv.on("click", () => displayRecipeModal(recipe));
-    $("#saved-recipes").append(recipeDiv);
-  });
-  //each div should display the same as a searched recipe div
-};
+// const displaySavedRecipes = async () => {
+//   const recipes = await getSavedRecipes();
+//   console.log(recipes);
+//   //get handle on container
+//   $("#saved-recipes").empty();
+//   //create div for each saved recipe we recieve from the api
+//   recipes.forEach((recipe) => {
+//     const recipeDiv = $("<div>").addClass(
+//       "cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
+//     );
+//     const labelDiv = $("<div>").html(recipe.label).addClass("mr-4");
+//     const image = $("<img>")
+//       .attr({
+//         src: recipe.image,
+//         alt: recipe.label,
+//       })
+//       .addClass("h-16 w-16 object-contain rounded");
+//     recipeDiv.append(labelDiv, image);
+//     recipeDiv.on("click", () => displayRecipeModal(recipe));
+//     $("#saved-recipes").append(recipeDiv);
+//   });
+//   //each div should display the same as a searched recipe div
+// };
 
-displaySavedRecipes();
+// displaySavedRecipes();
 
 $("form").on("submit", searchRecipes);
 $("#closeModal").on("click", () => $("#recipe-modal").addClass("hidden"));
@@ -156,6 +156,7 @@ $("#save-recipe").on("click", async () => {
       console.log(savedRecipe);
       console.log("Youre recipe was SAVED!");
       $("#recipe-modal").addClass("hidden");
+      window.location.reload();
     } else {
       throw new Error("Failed to save recipe");
     }
@@ -164,6 +165,5 @@ $("#save-recipe").on("click", async () => {
   }
 
   // Call the displaySavedRecipes function outside of the if statement
-  $("#saved-recipes").empty();
-  displaySavedRecipes();
+  //displaySavedRecipes();
 });
