@@ -81,10 +81,11 @@ const getSavedRecipes = async () => {
       console.log(recipes);
       return recipes;
     } else {
-      return;
+      return [];
     }
   } catch (error) {
     console.error("Error fetching saved recipes:", error);
+    return [];
   }
 };
 
@@ -98,15 +99,15 @@ const displaySavedRecipes = async () => {
     const recipeDiv = $("<div>").addClass(
       "cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
     );
-    const labelDiv = $("<div>").html(recipe.recipe.label).addClass("mr-4");
+    const labelDiv = $("<div>").html(recipe.label).addClass("mr-4");
     const image = $("<img>")
       .attr({
-        src: recipe.recipe.image,
-        alt: recipe.recipe.label,
+        src: recipe.image,
+        alt: recipe.label,
       })
       .addClass("h-16 w-16 object-contain rounded");
     recipeDiv.append(labelDiv, image);
-    recipeDiv.on("click", () => displayRecipeModal(recipe.recipe));
+    recipeDiv.on("click", () => displayRecipeModal(recipe));
     $("#saved-recipes").append(recipeDiv);
   });
   //each div should display the same as a searched recipe div
@@ -130,7 +131,7 @@ $("#save-recipe").on("click", async () => {
     cuisineType: $("#cuisine-type").text(),
     mealType: $("#meal-type").text(),
     macros: $("#macros").html(),
-    //user_id: req.session.user_id,
+    //user_id: userId,
   };
   console.log(newRecipe);
   console.log("---------");
@@ -149,13 +150,14 @@ $("#save-recipe").on("click", async () => {
       console.log(savedRecipe);
       console.log("Youre recipe was SAVED!");
       $("#recipe-modal").addClass("hidden");
-      $("#saved-recipes").empty();
-
-      displaySavedRecipes();
     } else {
       throw new Error("Failed to save recipe");
     }
   } catch (error) {
     console.error("Error saving recipe:", error);
   }
+
+  // Call the displaySavedRecipes function outside of the if statement
+  $("#saved-recipes").empty();
+  displaySavedRecipes();
 });

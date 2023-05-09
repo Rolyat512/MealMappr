@@ -5,14 +5,13 @@ const withAuth = require("../../utils/auth");
 //GET saved recipes route
 router.get("/myrecipes", async (req, res) => {
   try {
-    // Find all recipes in the database
     const savedRecipes = await Recipe.findAll({
       where: { user_id: req.session.user_id },
     });
-
     if (!savedRecipes) {
       console.log("no recipes found");
     }
+
     res.status(200).json(savedRecipes);
   } catch (err) {
     console.error(err);
@@ -20,7 +19,7 @@ router.get("/myrecipes", async (req, res) => {
   }
 });
 
-router.post("/myrecipes", withAuth, async (req, res) => {
+router.post("/myrecipes", async (req, res) => {
   try {
     //res.json({message: "You just saved a meal!"})
 
