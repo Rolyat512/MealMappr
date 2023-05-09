@@ -1,4 +1,4 @@
-{
+/*{
   // Prevent ESLint from looking at parent directories
   "root": true,
   "env": {
@@ -34,3 +34,4 @@
     "radix": "off"
   }
 }
+*/

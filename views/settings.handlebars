@@ -1,6 +1,13 @@
+  <button
+          type="submit"
+          id="deleteUser"
+          class="bg-red-500 text-white font-semibold px-2 py-1 rounded-lg hover:bg-red-700"
+          style=" margin-right:1%; float:right"
+        >Delete Account
+  </button>
 <div class="w-full max-w-md mx-auto mt-10 px-4">
   <h2 class="text-2xl font-semibold text-center mb-6">User Settings</h2>
-
+  
   <form id="settings-form" class="bg-white rounded-lg p-8">
 
     <div class="mb-6">
@@ -11,20 +18,8 @@
         id="name"
         class="w-full border border-gray-300 rounded-lg mt-2 p-2"
         value=""
-        disabled
+        required
       />
-      <div class="flex justify-between mt-2">
-        <button
-          type="button"
-          id="edit-name"
-          class="bg-blue-500 text-white font-semibold px-2 py-1 rounded-lg hover:bg-blue-600"
-        >Update</button>
-        <button
-          type="button"
-          id="save-name"
-          class="bg-red-500 text-white font-semibold px-2 py-1 rounded-lg hover:bg-red-600 hidden"
-        >Save</button>
-      </div>
     </div>
 
     <div class="mb-6">
@@ -35,20 +30,8 @@
         id="email"
         class="w-full border border-gray-300 rounded-lg mt-2 p-2"
         value=""
-        disabled
+        required
       />
-      <div class="flex justify-between mt-2">
-        <button
-          type="button"
-          id="edit-email"
-          class="bg-blue-500 text-white font-semibold px-2 py-1 rounded-lg hover:bg-blue-600"
-        >Update</button>
-        <button
-          type="button"
-          id="save-email"
-          class="bg-red-500 text-white font-semibold px-2 py-1 rounded-lg hover:bg-red-600 hidden"
-        >Save</button>
-      </div>
     </div>
 
     <div class="mb-6">
@@ -59,24 +42,12 @@
         id="password"
         class="w-full border border-gray-300 rounded-lg mt-2 p-2"
         value=""
-        disabled
+        required
       />
-      <div class="flex justify-between mt-2">
-        <button
-          type="button"
-          id="edit-password"
-          class="bg-blue-500 text-white font-semibold px-2 py-1 rounded-lg hover:bg-blue-600"
-        >Update</button>
-        <button
-          type="button"
-          id="save-password"
-          class="bg-red-500 text-white font-semibold px-2 py-1 rounded-lg hover:bg-red-600 hidden"
-        >Save</button>
-      </div>
     </div>
 
     <div class="mb-6">
-      <label for="theme" class="block text-gray-700">Theme</label>
+      {{!-- <label for="theme" class="block text-gray-700">Theme</label>
       <select
         name="theme"
         id="theme"
@@ -85,19 +56,16 @@
       >
         <option value="light">Light</option>
         <option value="dark">Dark</option>
-      </select>
+      </select> --}}
       <div class="flex justify-between mt-2">
         <button
-          type="button"
-          id="edit-theme"
+          type="submit"
+          id="updateUser"
           class="bg-blue-500 text-white font-semibold px-2 py-1 rounded-lg hover:bg-blue-600"
-        >Update</button>
-        <button
-          type="button"
-          id="save-theme"
-          class="bg-red-500 text-white font-semibold px-2 py-1 rounded-lg hover:bg-red-600 hidden"
-        >Save</button>
+        >Update Account</button>
       </div>
     </div>
   </form>
 </div>
+
+<script src="/js/settings.js"></script>
