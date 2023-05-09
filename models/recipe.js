@@ -11,36 +11,45 @@ Recipe.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    date: {
+    label: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    foodTitle: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    itemDescription: {
+    dietLabels: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [0, 150],
-      },
+      allowNull: true,
     },
-    proteinValue: {
+    healthLabels: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    cautions: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    ingredients: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    calories: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Calories: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    Carbs: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    cuisineType: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     mealType: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+    },
+    macros: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -56,7 +65,7 @@ Recipe.init(
     createdAt: 'created_at',
     freezeTableName: true,
     underscored: true,
-    modelName: 'meal',
+    modelName: 'recipe',
   }
 );
 

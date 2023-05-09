@@ -5,9 +5,9 @@ const { Meal } = require("../../models");
 router.post("/meal", async (req, res) => {
     try {
       // Create a new meal with the information provided in the request body
-      const dbMeals = await Meal.create(req.body);
+      const newMeal = await Meal.create(req.body);
       // Return a JSON response with the newly created meal
-      res.status(200).json(dbMeals);
+      res.status(200).json(newMeal);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

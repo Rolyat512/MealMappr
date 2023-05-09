@@ -70,9 +70,9 @@ const searchRecipes = async (event) => {
   }
 };
 
-const getSavedRecipes = async (recipes) => {
+const getSavedRecipes = async () => {
   try {
-    const response = await fetch("/savedRecipes", {
+    const response = await fetch("/myrecipes", {
       method: "GET",
     });
     if (response.status === 200) {
@@ -86,7 +86,7 @@ const getSavedRecipes = async (recipes) => {
   }
 };
 
-const displayRecipes = async () => {
+const displaySavedRecipes = async () => {
   const recipes = await getSavedRecipes();
   //get handle on container
   $("#saved-recipes").empty();
@@ -109,5 +109,46 @@ const displayRecipes = async () => {
   //each div should display the same as a searched recipe div
 };
 
+displaySavedRecipes();
+
 $("form").on("submit", searchRecipes);
 $("#closeModal").on("click", () => $("#recipe-modal").addClass("hidden"));
+
+$("#save-recipe").on("click", async () => {
+  const newRecipe = {
+    label: $("#recipe-title").text(),
+    image: $("#recipe-image").attr("src"),
+    dietLables: $("#diet-labels").text(),
+    healthLables: $("#health-labels").text(),
+
+    cautions: $("#cautions").text(),
+    ingredients: $("#ingredient-list").html(),
+    calories: Math.round(parseInt($("#calories").text(), 10)),
+    cuisineType: $("#cuisine-type").text(),
+    mealType: $("#meal-type").text(),
+    macros: $("#macros").html(),
+    //user_id: req.session.user_id,
+  };
+  console.log(newRecipe)
+
+  try {
+    const response = await fetch("/users/myrecipes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newRecipe),
+    });
+    // If the meal was successfully added, the new event is added to the calendar and the modal is closed
+    if (response.status === 200) {
+      const savedRecipe = await response.json();
+      $("#recipe-modal").addClass("hidden");
+
+      displaySavedRecipes();
+    } else {
+      throw new Error("Failed to save recipe");
+    }
+  } catch (error) {
+    console.error("Error saving recipe:", error);
+  }
+});
