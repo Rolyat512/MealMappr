@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Meal } = require("../../models");
 const bcrypt = require("bcrypt");
 const withAuth = require("../../utils/auth");
 
@@ -22,10 +22,11 @@ router.post("/signup", async (req, res) => {
     const dbUserData = await User.create(req.body);
 
     req.session.save(() => {
+      req.session.userId = dbUserData.id; // to get the user.id for the session, so i can use it for update and delete functions
       req.session.loggedIn = true;
-
       res.status(200).json(dbUserData);
     });
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -70,8 +71,11 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.save(() => {
+      req.session.userId = dbUserData.id; // gets the user ID at login // confirmed working
       req.session.loggedIn = true;
-      req.session.user_id = dbUserData.id; // Set the user_id in the session
+
+      req.session.user_id = dbUserData.id; // Set the user_id in the sessio
+
 
       res
         .status(200)
@@ -84,7 +88,7 @@ router.post("/login", async (req, res) => {
 });
 
 // Logout
-router.post("/logout", (req, res) => {
+router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -93,5 +97,92 @@ router.post("/logout", (req, res) => {
     res.status(404).end();
   }
 });
+
+
+
+router.get('/settings', withAuth, async (req,res) => {
+  try {
+    const user = await User.findAll({ 
+      where: { id: req.session.userId },
+      raw: true,
+      nest: true,});
+    res.render("settings", {
+      loggedIn: req.session.loggedIn,
+      user
+    }); 
+  } catch (err) {
+    res.status(400).json({ message: "No page found" });
+    console.log(err);
+  }
+});
+
+router.put('/settings', withAuth, async (req,res) => {
+  try {
+    const updateUser = await User.update({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      // id: req.session.user_id
+    },
+      {where: {id: req.session.userId}} 
+      );
+    if(!updateUser) {
+      res.status(404).json({message: 'No user found'});
+      return;
+    }
+    res.status(200).json({message: 'User info has been updated'})
+  } catch (err) {
+    res.status(500).json({message:"An error has occured"});
+    console.log(err);
+  }
+});
+
+router.delete('/settings', withAuth, async (req, res) => {
+  try {
+      const deleteAccount = await User.destroy({where: {id: req.session.userId}});
+      if(!deleteAccount) {
+      res.status(404).json({message: 'No user with this ID found'});
+      return;
+      }
+      res.status(200).json({message: 'Account  has been deleted'})
+  } catch (err) {
+      res.status(500).json({message:"An error has occured"});
+      console.log(err);
+  };
+  });
+
+
+
+  
+// just for testing
+router.get('/all', async (req,res) => {
+  try {
+    const user = await User.findAll();
+    res.status(200).json(user)
+  } catch (err) {
+    res.status(400).json({ message: "No page found" });
+    console.log(err);
+  }
+});
+
+// just for testing
+router.get('/all/meals', async (req,res) => {
+  try {
+    const user = await Meal.findAll({ 
+      include: [{model: User, attributes: ['id']}],
+      raw: true,
+      nest: true,
+    });
+    res.status(200).json(user)
+    // res.render("homepage", { 
+    //   isLoggedIn: req.session.loggedIn,
+    //   user
+    // })
+  } catch (err) {
+    res.status(400).json({ message: "No page found" });
+    console.log(err);
+  }
+});
+
 
 module.exports = router;
