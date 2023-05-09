@@ -1,7 +1,7 @@
 // This code block sets up the calendar, adds event data and options, and sets the header toolbar
 $(document).ready(function () {
   var calendar = $("#calendar");
-  var calendar = new FullCalendar.Calendar(calendar[0], { 
+  var calendar = new FullCalendar.Calendar(calendar[0], {
     initialView: "dayGridMonth",
     initialDate: new Date(),
     navLinks: true,
@@ -29,30 +29,28 @@ $(document).ready(function () {
         }
       } catch (err) {
         failureCallback("Error fetching events: " + err);
-      };
+      }
     },
-    eventClick: async function(info) {
-
+    eventClick: async function (info) {
       info.jsEvent.preventDefault();
 
-      const mealID = info.event._def.publicId // grabs meal ID as 'publicId' from info.event._def given above in id: meal.id
+      const mealID = info.event._def.publicId; // grabs meal ID as 'publicId' from info.event._def given above in id: meal.id
       console.log(mealID);
 
-      // route to the modal 
+      // route to the modal
       const response = await fetch(`/users/meals/${mealID}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-      });  
+      });
       if (response.ok) {
         document.location.replace(`/users/meals/${mealID}`);
       } else {
         alert("Error. Please try again.");
       }
-
     },
-    
+
     // This function runs when a date is clicked, sets the date value in the modal, and displays the modal
     dateClick: function (info) {
       const openModal = document.getElementById("myModal");
@@ -64,7 +62,7 @@ $(document).ready(function () {
       left: "prev,next today",
       center: "title",
       right: "dayGridMonth,timeGridWeek,timeGridDay,list",
-    }
+    },
   });
   calendar.render();
 
@@ -83,7 +81,7 @@ $(document).ready(function () {
   const closeReview = $("#closeReview");
   closeReview.on("click", () => {
     modalReview.addClass("hidden");
-    document.location.replace('/home');
+    document.location.replace("/home");
   });
 
   // This code block handles form submission when adding a meal and sends the form data to the server
@@ -110,7 +108,7 @@ $(document).ready(function () {
       // If the meal was successfully added, the new event is added to the calendar and the modal is closed
       if (response.status === 200) {
         const newEvent = await response.json();
-        console.log(newEvent)
+        console.log(newEvent);
         calendar.addEvent(newEvent);
         myModal.addClass("hidden");
         location.reload();
@@ -122,11 +120,9 @@ $(document).ready(function () {
     }
   });
 
-
-
   // update the data in the modal/meal
-  const formReview = $('#meal-review');
-  formReview.on('submit', async function(event) {
+  const formReview = $("#meal-review");
+  formReview.on("submit", async function (event) {
     event.preventDefault();
 
     const id = document.querySelector('input[name="reviewDate"]').value; // brackets drill down into input attributes
@@ -147,18 +143,18 @@ $(document).ready(function () {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(reviewData)
-      });  
+        body: JSON.stringify(reviewData),
+      });
       // If the meal was successfully updated, the new meal is updated on the event and the modal is closed and sent back to /home
       if (response.ok) {
         console.log(reviewData);
-        alert("Your meal has been successfully updated!")
+        alert("Your meal has been successfully updated!");
         const reviewEvent = await response.json();
-        console.log(reviewEvent)
-        document.location.replace('/home');
+        console.log(reviewEvent);
+        document.location.replace("/home");
       } else {
         alert("Error. Failed to update meal.");
-      }      
+      }
     } catch (error) {
       console.error("Error updating meal:", error);
     }
@@ -168,21 +164,19 @@ $(document).ready(function () {
     event.preventDefault();
     const deleteId = document.querySelector('input[name="reviewDate"]').value; // brackets drill down into input attributes
     console.log(deleteId);
-  
+
     const response = await fetch(`/users/meals/${deleteId}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin", // Include this line to ensure that the session cookie is sent with the request
     });
-    if(response.ok) {
-      alert("Your meal has been deleted successfully.")
-        document.location.replace('/home');
+    if (response.ok) {
+      alert("Your meal has been deleted successfully.");
+      document.location.replace("/home");
     } else {
-      alert("Delete unsuccessful.  Please try again.")
+      alert("Delete unsuccessful.  Please try again.");
     }
   };
-  const removeMeal = $('#deleteMeal');
-  removeMeal.on('click', deleteMeal);
-  
+  const removeMeal = $("#deleteMeal");
+  removeMeal.on("click", deleteMeal);
 });
-
-

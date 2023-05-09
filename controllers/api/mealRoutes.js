@@ -1,11 +1,14 @@
 const router = require("express").Router();
+
 const { Meal, User } = require("../../models");
+
 const withAuth = require("../../utils/auth");
 
 // Define a POST route for creating a meal
 router.post("/meal", withAuth, async (req, res) => {
     try {
       // Create a new meal with the information provided in the request body
+
       const dbMeals = await Meal.create({
         foodTitle: req.body.foodTitle,
         itemDescription: req.body.itemDescription,
@@ -16,6 +19,7 @@ router.post("/meal", withAuth, async (req, res) => {
         date: req.body.date,
         user_id: req.session.userId // added user_id for logged in user -kd
       });
+
       // Return a JSON response with the newly created meal
       res.status(200).json(dbMeals);
     } catch (err) {
@@ -23,6 +27,7 @@ router.post("/meal", withAuth, async (req, res) => {
       res.status(500).json(err);
     }
   });
+
 
 //GET meals route by logged in user
 router.get("/meals", withAuth, async (req, res) => {
@@ -45,7 +50,6 @@ router.get("/meals", withAuth, async (req, res) => {
 // and appear in the modal with data
 router.get("/meals/:id", withAuth, async (req, res) => {
   try {
-    // Find all meals in the database
     const meals = await Meal.findByPk(req.params.id, {
       raw: true,
       nest: true
