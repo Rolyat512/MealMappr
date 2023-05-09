@@ -13,12 +13,11 @@ const signupFormHandler = async (event) => {
         body: JSON.stringify({ name, email, password }),
         headers: { "Content-Type": "application/json" },
       });
-        if (response.ok) {
-          document.location.replace('/home');
-        } else {
-          alert("Page not redirected, please try again");
-        }
-      
+      if (response.ok) {
+        document.location.replace('/home');
+      } else {
+        alert("Page not redirected, please try again");
+      }
     }
   } else {
     alert("Something went wrong, please try again");
