@@ -1,5 +1,3 @@
-//const { response } = require("express");
-
 // This code block sets up the calendar, adds event data and options, and sets the header toolbar
 $(document).ready(function () {
   var calendar = $("#calendar");
@@ -13,7 +11,7 @@ $(document).ready(function () {
     events: async (info, successCallback, failureCallback) => {
       try {
         //fetch meals from server and format it to a FullCalendar event format
-        const response = await fetch("/users/meals", {
+        const response = await fetch("/users/meals", { // this is getting *all* meals but the /home route now gets meals specifically for the logged in user
           method: "GET",
         });
         if (response.status === 200) {
