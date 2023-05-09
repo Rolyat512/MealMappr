@@ -81,7 +81,7 @@ const getSavedRecipes = async () => {
       console.log(recipes);
       return recipes;
     } else {
-      throw new Error("Failed to fetch saved recipes");
+      return;
     }
   } catch (error) {
     console.error("Error fetching saved recipes:", error);
@@ -121,8 +121,8 @@ $("#save-recipe").on("click", async () => {
   const newRecipe = {
     label: $("#recipe-title").text(),
     image: $("#recipe-image").attr("src"),
-    dietLables: $("#diet-labels").text(),
-    healthLables: $("#health-labels").text(),
+    dietLabels: $("#diet-labels").text(), // Fixed the typo here
+    healthLabels: $("#health-labels").text(), // Fixed the typo here
 
     cautions: $("#cautions").text(),
     ingredients: $("#ingredient-list").html(),
