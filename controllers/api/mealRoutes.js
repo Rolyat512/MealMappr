@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Meal } = require("../../models");
+const { Meal, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // Define a POST route for creating a meal

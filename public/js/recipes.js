@@ -119,24 +119,30 @@ $("form").on("submit", searchRecipes);
 $("#closeModal").on("click", () => $("#recipe-modal").addClass("hidden"));
 
 $("#save-recipe").on("click", async () => {
-  const newRecipe = {
-    label: $("#recipe-title").text(),
-    image: $("#recipe-image").attr("src"),
-    dietLabels: $("#diet-labels").text(), // Fixed the typo here
-    healthLabels: $("#health-labels").text(), // Fixed the typo here
-
-    cautions: $("#cautions").text(),
-    ingredients: $("#ingredient-list").html(),
-    calories: Math.round(parseInt($("#calories").text(), 10)),
-    cuisineType: $("#cuisine-type").text(),
-    mealType: $("#meal-type").text(),
-    macros: $("#macros").html(),
-    //user_id: userId,
-  };
-  console.log(newRecipe);
-  console.log("---------");
+  //validate recipe data
 
   try {
+    //Collect recipe data
+    const newRecipe = {
+      label: $("#recipe-title").text(),
+      image: $("#recipe-image").attr("src"),
+      dietLabels: $("#diet-labels").text(), // Fixed the typo here
+      healthLabels: $("#health-labels").text(), // Fixed the typo here
+
+      cautions: $("#cautions").text(),
+      ingredients: $("#ingredient-list").html(),
+      calories: Math.round(parseInt($("#calories").text(), 10)),
+      cuisineType: $("#cuisine-type").text(),
+      mealType: $("#meal-type").text(),
+      macros: $("#macros").html(),
+      //user_id: userId,
+    };
+
+    console.log(newRecipe);
+
+    //TODO:validate recipe data
+
+    //send post request with recipe data
     const response = await fetch("/users/myrecipes", {
       method: "POST",
       headers: {
@@ -145,7 +151,7 @@ $("#save-recipe").on("click", async () => {
       body: JSON.stringify(newRecipe),
     });
     // If the meal was successfully added, the new event is added to the calendar and the modal is closed
-    if (response.status === 200) {
+    if (response.ok) {
       const savedRecipe = await response.json();
       console.log(savedRecipe);
       console.log("Youre recipe was SAVED!");
