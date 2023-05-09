@@ -50,20 +50,31 @@ router.get("/settings", withAuth, async (req, res) => {
   }
 });
 
-// for a user to delete their account, will need to come back to update this, once more info is done -kd
-// router.delete('/home/settings/:id', withAuth, async (req, res) => {
-// try {
-//     const deleteUser = await User.destroy();
+router.get("/about", async (req, res) => {
+  try {
+    res.render("about"); //this will be for redner the home handlebars layout
+  } catch (err) {
+    res.status(400).json({ message: "No homepage found" });
+    console.log(err);
+  }
+});
 
-//     if(!deleteUser) {
-//     res.status(404).json({message: 'No user with this ID found'});
-//     return;
-//     }
-//     res.status(200).json({message: 'This user has been successfully deleted'})
-// } catch (err) {
-//     res.status(500).json({message:"An error has occured"});
-//     console.log(err);
-// };
-// });
+router.get("/contact", async (req, res) => {
+  try {
+    res.render("contact"); //this will be for redner the home handlebars layout
+  } catch (err) {
+    res.status(400).json({ message: "No homepage found" });
+    console.log(err);
+  }
+});
+
+router.get("/faq", async (req, res) => {
+  try {
+    res.render("faq"); //this will be for redner the home handlebars layout
+  } catch (err) {
+    res.status(400).json({ message: "No homepage found" });
+    console.log(err);
+  }
+});
 
 module.exports = router;
