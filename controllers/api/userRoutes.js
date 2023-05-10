@@ -7,8 +7,10 @@ const withAuth = require("../../utils/auth");
 // route: users/signup
 router.get("/signup", async (req, res) => {
   try {
-    // why is the password showing in url -kd will look into just note for myself
-    //res.json({message: 'This will be the signup page'} )
+    if (req.session.loggedIn) {
+      res.redirect("/home");
+      return;
+    }
     res.render("signup"); //this will be for redner the welcome handlebars layout when the site first loads
   } catch (err) {
     res.status(400).json({ message: "No page found" });
@@ -36,7 +38,10 @@ router.post("/signup", async (req, res) => {
 // route: users/login
 router.get("/login", async (req, res) => {
   try {
-    //res.json({message: 'This will be the login page'} )
+    if (req.session.loggedIn) {
+      res.redirect("/home");
+      return;
+    }
     res.render("login"); //this will be for redner the welcome handlebars layout when the site first loads
   } catch (err) {
     res.status(400).json({ message: "No login page found" });
@@ -96,13 +101,13 @@ router.post("/logout", (req, res) => {
 
 router.get("/settings", withAuth, async (req, res) => {
   try {
-    const user = await User.findAll({
+    const user = await User.findOne({
       where: { id: req.session.userId },
       raw: true,
       nest: true,
     });
     res.render("settings", {
-      loggedIn: req.session.loggedIn,
+      loggedIn: true,
       user,
     });
   } catch (err) {
@@ -149,34 +154,34 @@ router.delete("/settings", withAuth, async (req, res) => {
   }
 });
 
-// just for testing
-router.get("/all", async (req, res) => {
-  try {
-    const user = await User.findAll();
-    res.status(200).json(user);
-  } catch (err) {
-    res.status(400).json({ message: "No page found" });
-    console.log(err);
-  }
-});
+// // just for testing
+// router.get("/all", async (req, res) => {
+//   try {
+//     const user = await User.findAll();
+//     res.status(200).json(user);
+//   } catch (err) {
+//     res.status(400).json({ message: "No page found" });
+//     console.log(err);
+//   }
+// });
 
-// just for testing
-router.get("/all/meals", async (req, res) => {
-  try {
-    const user = await Meal.findAll({
-      include: [{ model: User, attributes: ["id"] }],
-      raw: true,
-      nest: true,
-    });
-    res.status(200).json(user);
-    // res.render("homepage", {
-    //   isLoggedIn: req.session.loggedIn,
-    //   user
-    // })
-  } catch (err) {
-    res.status(400).json({ message: "No page found" });
-    console.log(err);
-  }
-});
+// // just for testing
+// router.get("/all/meals", async (req, res) => {
+//   try {
+//     const user = await Meal.findAll({
+//       include: [{ model: User, attributes: ["id"] }],
+//       raw: true,
+//       nest: true,
+//     });
+//     res.status(200).json(user);
+//     // res.render("homepage", {
+//     //   isLoggedIn: req.session.loggedIn,
+//     //   user
+//     // })
+//   } catch (err) {
+//     res.status(400).json({ message: "No page found" });
+//     console.log(err);
+//   }
+// });
 
 module.exports = router;

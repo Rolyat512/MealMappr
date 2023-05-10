@@ -28,7 +28,7 @@
           class="dropdown-menu hidden bg-blue-700 text-slate-100 rounded py-2 absolute right-0 top-20 z-10 text-center"
           id="dropdown-menu"
         >
-          {{#if isLoggedIn}}
+          {{#if loggedIn}}
             <a
               href="/myrecipes"
               class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
@@ -73,7 +73,7 @@
       </div>
     </footer>
     <!-- Render script for logged in users only -->
-    {{#if isLoggedIn}}
+    {{#if loggedIn}}
       <script src="/js/logout.js"></script>
     {{/if}}
     <script>
