@@ -41,7 +41,7 @@ router.post("/myrecipes", withAuth, async (req, res) => {
       cuisineType: req.body.cuisineType,
       mealType: req.body.mealType,
       macros: req.body.macros,
-      user_id: req.session.user_id,
+      user_id: req.session.userId,
    
     });
 

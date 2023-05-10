@@ -84,7 +84,7 @@ router.get("/myrecipes", withAuth, async (req, res) => {
 
     const recipeData = await Recipe.findAll({
       where: {
-        user_id: req.session.user_id,
+        user_id: req.session.userId,
       },
     });
 
