@@ -31,7 +31,15 @@
 
     {{#each recipes}}
       <div
-        class="cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
+        class="saved-recipe-div cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
+        data-dietlabels="{{this.dietLabels}}"
+        data-healthlabels="{{this.healthLabels}}"
+        data-cautions="{{this.cautions}}"
+        data-cuisinetype="{{this.cuisineType}}"
+        data-mealtype="{{this.mealType}}"
+        data-ingredients="{{this.ingredients}}"
+        data-calories="{{this.calories}}"
+        data-macros="{{this.macros}}"
       >
         <div id="label" class="mr-4">{{this.label}}</div>
         <img
