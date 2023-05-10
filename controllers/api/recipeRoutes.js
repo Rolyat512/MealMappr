@@ -2,32 +2,6 @@ const router = require("express").Router();
 const { Recipe } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// //GET saved recipes route
-// router.get("/myrecipes", async (req, res) => {
-//   try {
-// // Find the logged in user based on the session ID
-// const userData = await User.findByPk(req.session.user_id, {
-//   attributes: { exclude: ["password"] },
-//   //include: [{ model: Recipe }],
-// });
-
-// const user = await userData.get({ plain: true });
-
-// // Fetch the escape rooms from the database
-//     const savedRecipes = await Recipe.findAll({
-//       where: { user_id: req.session.user_id },
-//     });
-//     if (!savedRecipes) {
-//       console.log("no recipes found");
-//     }
-
-//     res.status(200).json(savedRecipes);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: "Error retrieving meals", error: err });
-//   }
-// });
-
 router.post("/myrecipes", withAuth, async (req, res) => {
   try {
     const newRecipe = await Recipe.create({
@@ -42,12 +16,30 @@ router.post("/myrecipes", withAuth, async (req, res) => {
       mealType: req.body.mealType,
       macros: req.body.macros,
       user_id: req.session.userId,
-   
     });
 
     res.status(201).json({ message: "Recipe saved", recipe: newRecipe });
   } catch (err) {
     console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get("/myrecipes/:id", withAuth, async (req, res) => {
+  try {
+    const recipeData = await Recipe.findByPk(req.params.id);
+
+    // Check if a recipe with the provided ID exists
+    if (!recipeData) {
+      res.status(404).json({ message: "No recipe found with this ID!" });
+      return;
+    }
+
+     // Get the plain object from the Sequelize instance
+     const recipe = recipeData.get({ plain: true });
+
+    res.render("savedrecipe", { recipe, loggedIn: true });
+  } catch (err) {
     res.status(500).json(err);
   }
 });
