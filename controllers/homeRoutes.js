@@ -36,15 +36,15 @@ router.get("/home", withAuth, async (req, res) => {
   }
 });
 
-router.get("/reportanissue", async (req, res) => {
-  try {
-    //res.json({message: 'This will be the home page after user is logged in'} )
-    res.render("reportissue", { loggedIn: true });
-  } catch (err) {
-    res.status(400).json({ message: "No homepage found" });
-    console.log(err);
-  }
-});
+// router.get("/reportanissue", async (req, res) => {
+//   try {
+//     //res.json({message: 'This will be the home page after user is logged in'} )
+//     res.render("reportissue", { loggedIn: true });
+//   } catch (err) {
+//     res.status(400).json({ message: "No homepage found" });
+//     console.log(err);
+//   }
+// });
 
 router.get("/settings", withAuth, async (req, res) => {
   try {
@@ -58,7 +58,11 @@ router.get("/settings", withAuth, async (req, res) => {
 
 router.get("/about", async (req, res) => {
   try {
-    res.render("about", { loggedIn: true }); //this will be for redner the home handlebars layout
+    if (req.session.loggedIn) {
+      res.render("about", { loggedIn: true });
+    } else {
+      res.render("about"); //this will be for redner the home handlebars layout
+    }
   } catch (err) {
     res.status(400).json({ message: "No homepage found" });
     console.log(err);
@@ -67,7 +71,11 @@ router.get("/about", async (req, res) => {
 
 router.get("/contact", async (req, res) => {
   try {
-    res.render("contact", { loggedIn: true }); //this will be for redner the home handlebars layout
+    if (req.session.loggedIn) {
+      res.render("contact", { loggedIn: true }); //this will be for redner the home handlebars layout
+    } else {
+      res.render("contact"); //this will be for redner the home handlebars layout
+    }
   } catch (err) {
     res.status(400).json({ message: "No homepage found" });
     console.log(err);
@@ -76,7 +84,11 @@ router.get("/contact", async (req, res) => {
 
 router.get("/faq", async (req, res) => {
   try {
-    res.render("faq", { loggedIn: true }); //this will be for redner the home handlebars layout
+    if (req.session.loggedIn) {
+      res.render("faq", { loggedIn: true }); //this will be for redner the home handlebars layout
+    } else {
+      res.render("faq"); //this will be for redner the home handlebars layout
+    }
   } catch (err) {
     res.status(400).json({ message: "No homepage found" });
     console.log(err);
