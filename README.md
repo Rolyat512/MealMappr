@@ -27,11 +27,14 @@ Meal Mappr is a meal planning website where you can view a calendar and create y
 ## Usage <a id="usage"></a> 
 <br>
 
-Once you reach the welcome site, you can click on the signup button or go to the navigation bar and click sign up. Once there you enter in your full name, email, and password. Once you're logged into the website you will be redirected to your home page where you will see a calendar. To begin creating your meal plan, you simply click on any date of the calendar where you will be prompted to enter in various informatuon to create your meal. Once the meal is created, you can click on the meal event and update or delete the event on the calendar. You can also drag or extend the meal event. 
+Once you reach the welcome site, you can click on the signup button or go to the navigation bar and click sign up. Once there you enter in your full name, email, and password. Once you're logged into the website you will be redirected to your home page where you will see a calendar. To begin creating your meal plan, you simply click on any date of the calendar where you will be prompted to enter in various information to create your meal. Once the meal is created, you can click on the meal event and update or delete the event on the calendar. You can also drag or extend the meal event. 
 
 <br>
 
 ## Demo <a id="Demo"></a>
+
+<img width="1512" alt="Screenshot 2023-05-10 at 5 33 41 PM" src="https://github.com/Rolyat512/MealMappr/assets/122414452/1844c1dd-eaac-4984-aed0-e966bb31493e">
+
 
 <br>
 
@@ -68,6 +71,11 @@ The following technologies were used to develop Meal Mappr:<br>
 <strong>APIs</strong>
 
 - Edamam Api 
+
+<strong>Other</strong>
+
+- Node.js
+
 
 <br>
     
