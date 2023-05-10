@@ -133,7 +133,10 @@ savedRecipeDivs.each((index, div) => {
 
 const displaySavedRecipe = (clickedDiv) => {
   //TODO: call GET route for recipe based on recipe ID
-
-  // Perform actions with the data attributes
-  console.log("You clicked a div!");
+  try {
+    const id = clickedDiv.id;
+    window.location.href = `/users/myrecipes/${id}`;
+  } catch (err) {
+    console.log(err);
+  }
 };
