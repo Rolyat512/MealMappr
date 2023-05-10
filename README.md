@@ -3,7 +3,6 @@
 
 ## Introducing Meal Mappr
 
-<!-- <strong>Introducing Meal Mappr!</strong> -->
 <br>
 Meal Mappr is a meal planning website where you can view a calendar and create your very own meal plan from scratch. <br>
 
@@ -20,7 +19,6 @@ Meal Mappr is a meal planning website where you can view a calendar and create y
 - [Collaborators](#collaborators)
 
 
-<!-- ## Installation <a id="installation"></a> -->
 <br>
 
 
