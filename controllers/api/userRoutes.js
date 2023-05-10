@@ -154,34 +154,4 @@ router.delete("/settings", withAuth, async (req, res) => {
   }
 });
 
-// // just for testing
-// router.get("/all", async (req, res) => {
-//   try {
-//     const user = await User.findAll();
-//     res.status(200).json(user);
-//   } catch (err) {
-//     res.status(400).json({ message: "No page found" });
-//     console.log(err);
-//   }
-// });
-
-// // just for testing
-// router.get("/all/meals", async (req, res) => {
-//   try {
-//     const user = await Meal.findAll({
-//       include: [{ model: User, attributes: ["id"] }],
-//       raw: true,
-//       nest: true,
-//     });
-//     res.status(200).json(user);
-//     // res.render("homepage", {
-//     //   isLoggedIn: req.session.loggedIn,
-//     //   user
-//     // })
-//   } catch (err) {
-//     res.status(400).json({ message: "No page found" });
-//     console.log(err);
-//   }
-// });
-
 module.exports = router;
