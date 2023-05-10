@@ -1,0 +1,107 @@
+<section class="pt-8 my-5 text-center">
+  <h1 class="font-bold text-4xl mb-4">My Recipes</h1>
+  <p class="text-xl mb-8">Search, save, and manage your favorite recipes</p>
+</section>
+<section class="mx-5">
+  <h2 class="text-2xl font-semibold mb-4">Search for recipes:</h2>
+  <form class="flex items-center mb-6">
+    <input
+      id="search-bar"
+      type="text"
+      name="search"
+      placeholder="Enter keywords to search"
+      class="flex-grow border-2 border-gray-300 rounded py-2 px-4"
+    />
+    <button
+      type="submit"
+      class="bg-blue-500 text-white px-6 py-2 rounded font-semibold mx-2"
+    >Search</button>
+  </form>
+  <div
+    id="recipe-results"
+    class="p-3 text-3xl text-center bg-white mx-2 rounded shadow-lg grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 px-5"
+  >
+    <!-- Recipe results will be populated here -->
+  </div>
+  <h2 class="text-2xl font-semibold mb-4">My Recipes:</h2>
+  <div
+    id="saved-recipes"
+    class="p-3 text-3xl text-center bg-white mx-2 rounded shadow-lg grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 px-5"
+  >
+  
+      <!-- Saved recipes will be populated here -->
+    
+   {{!-- <
+    p id="no-saved-recipes">You Have No Saved Recipes</p> --}}
+  </div>
+
+</section>
+<!-- Recipe modal -->
+<div
+  id="recipe-modal"
+  class="fixed h-screen inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center z-50"
+>
+  <div
+    class="overscroll-contain max-h-screen overflow-y-auto relative bg-white p-6 rounded-lg shadow-lg w-full max-w-lg"
+  >
+    <span
+      id="closeModal"
+      class="absolute top-5 right-8 text-xl font-bold cursor-pointer"
+    >&times;</span>
+    <h2 class="font-bold text-4xl my-4" id="recipe-title"></h2>
+    <div class="flex flex-wrap justify-between">
+      <div class="w-full md:w-1/3">
+        <img id="recipe-image" class="w-full h-auto rounded-lg mb-4" alt="" />
+        <div class="flex items-center justify-between">
+
+        </div>
+      </div>
+      <div class="w-full md:w-2/3 pl-4">
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Diet Labels:</p>
+          <p id="diet-labels" class="text-right ml-2"></p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Health Labels:</p>
+          <p id="health-labels" class="text-right ml-2"></p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Cautions:</p>
+          <p id="cautions" class="ml-2 text-right"></p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Cuisine Type:</p>
+          <p id="cuisine-type" class="ml-2 text-right"></p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Meal Type:</p>
+          <p id="meal-type" class="ml-2 text-right"></p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Ingredients:</p>
+          <ul id="ingredient-list" class="list-disc ml-2 text-right"></ul>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Calories:</p>
+          <p id="calories" class="ml-2 text-right"></p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Macros:</p>
+          <p id="macros" class="ml-2 text-right"></p>
+        </div>
+
+      </div>
+    </div>
+    <button
+      id="save-recipe"
+      class="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold"
+    >Save Recipe</button>
+    <button
+      id="delete-recipe"
+      class="bg-red-500 text-white px-6 py-2 rounded-lg font-semibold hidden"
+    >Delete</button>
+
+  </div>
+</div>
+
+<script src="/js/recipes.js"></script>
