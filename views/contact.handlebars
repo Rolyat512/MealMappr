@@ -1,8 +1,15 @@
 <div class="container mx-auto px-4 py-12">
   <h2 class="font-semibold text-2xl mb-4">Contact Us</h2>
-  <p class="text-slate-950 mb-4">We'd love to hear from you! If you have any questions, suggestions, or concerns, feel free to reach out to our team using the contact form below:</p>
+  <p class="text-slate-950 mb-4">We'd love to hear from you! If you have any
+    questions, suggestions, or concerns, feel free to reach out to our team
+    using the contact form below:</p>
 
-  <form id="contact-form" class="w-full max-w-lg">
+  <form
+    id="contact-form"
+    class="w-full max-w-lg"
+    action="/contact"
+    method="post"
+  >
     <div class="mb-4">
       <label for="name" class="block text-sm font-semibold mb-2">Full Name</label>
       <input
@@ -24,7 +31,10 @@
       />
     </div>
     <div class="mb-4">
-      <label for="message" class="block text-sm font-semibold mb-2">Message</label>
+      <label
+        for="message"
+        class="block text-sm font-semibold mb-2"
+      >Message</label>
       <textarea
         id="message"
         name="message"

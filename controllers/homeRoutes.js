@@ -1,5 +1,17 @@
 const router = require("express").Router();
 const { User, Recipe, Meal } = require("../models");
+require("dotenv").config();
+
+const nodemailer = require("nodemailer");
+
+// Configure Nodemailer
+const transport = nodemailer.createTransport({
+  service: "hotmail", // You can use other email services like Yahoo, Outlook, etc.
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
 const withAuth = require("../utils/auth");
 
@@ -112,6 +124,30 @@ router.get("/myrecipes", withAuth, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
+  }
+});
+
+router.post("/contact", async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    // Compose the email
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // Replace this with the email you want to receive the message
+      subject: "Review: Someone submitted the MealMappr Contact Form!",
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    };
+
+    // Send the email
+    const emailSent = await transport.sendMail(mailOptions);
+
+    if (emailSent) {
+      res.status(200).redirect("/");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("An error occurred while sending the email.");
   }
 });
 
