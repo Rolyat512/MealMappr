@@ -58,7 +58,7 @@ router.get("/meals/:id", withAuth, async (req, res) => {
     //res.status(200).json(meals);
     if (mealId) {
       //res.status(200).json(meals);
-      res.render('homepage', {meals})
+      res.render('homepage', {meals, loggedIn: true})
     }
    
   } catch (err) {

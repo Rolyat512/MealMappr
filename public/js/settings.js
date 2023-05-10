@@ -33,13 +33,13 @@ const updateUser = $('#settings-form');
 
   const deleteUser = $('#deleteUser');
   deleteUser.on('click', async () => {
-    const response = await fetch('users/settings', {
+    const response = await fetch('/users/settings', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
   });
   if(response.ok) {
     alert("Your account has been deleted successfully.")
-      document.location.replace('/signup');
+      document.location.replace('/users/signup');
   } else {
     alert("Delete account unsuccessful.  Please try again.")
   }
