@@ -25,21 +25,21 @@
           &#9776;
         </button>
         <div
-          class="dropdown-menu hidden bg-blue-700 text-slate-100 rounded py-2 absolute right-0 top-20 z-10 text-center"
+          class="dropdown-menu hidden bg-blue-700 text-slate-100 rounded py-2 absolute right-0 top-20 z-10 text-center lg:right-8 lg:text-1xl"
           id="dropdown-menu"
         >
           {{#if loggedIn}}
             <a
               href="/myrecipes"
-              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700 lg:px-16 "
             >My Recipes</a>
             <a
               href="/settings"
-              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700 lg:px-10"
             >Settings</a>
             <button
               id="logout"
-              class="block px-4 w-full py-2 hover:bg-slate-50 hover:text-blue-700"
+              class="block px-4 w-full py-2 hover:bg-slate-50 hover:text-blue-700 lg:px-10"
             >Logout</button>
             {{!-- <a
               href="/reportanissue"
@@ -48,11 +48,11 @@
           {{else}}
             <a
               href="/users/signup"
-              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700 lg:px-16 "
             >Sign Up</a>
             <a
               href="/users/login"
-              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700"
+              class="block px-4 py-2 hover:bg-slate-50 hover:text-blue-700 lg:px-10 "
             >Sign In</a>
           {{/if}}
 
