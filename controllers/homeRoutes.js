@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { Meal, User } = require("../models");
+const { User, Recipe, Meal } = require("../models");
+
 const withAuth = require("../utils/auth");
 
 //root page welcome screen
@@ -80,13 +81,25 @@ router.get("/faq", async (req, res) => {
 
 router.get("/myrecipes", withAuth, async (req, res) => {
   try {
+
+    const recipeData = await Recipe.findAll({
+      where: {
+        user_id: req.session.userId,
+      },
+    });
+
+    const recipes = recipeData.map((recipe) =>
+      recipe.get({ plain: true })
+    );
+
     res.render("recipes", {
+      recipes,
       isLoggedIn: req.session.loggedIn,
-      user_id: req.session.user_id,
+      
     });
   } catch (err) {
-    res.status(400).json({ message: "No homepage found" });
-    console.log(err);
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 });
 

@@ -23,16 +23,39 @@
   >
     <!-- Recipe results will be populated here -->
   </div>
-  <h2 class="text-2xl font-semibold mb-4">My Recipes:</h2>
+  <h2 class="text-2xl font-semibold mb-4">My Saved Recipes:</h2>
   <div
     id="saved-recipes"
     class="p-3 text-3xl text-center bg-white mx-2 rounded shadow-lg grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 px-5"
   >
-  
-      <!-- Saved recipes will be populated here -->
-    
-   {{!-- <
-    p id="no-saved-recipes">You Have No Saved Recipes</p> --}}
+
+    {{#each recipes}}
+      <div
+        class="saved-recipe-div cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
+        data-dietlabels="{{this.dietLabels}}"
+        data-healthlabels="{{this.healthLabels}}"
+        data-cautions="{{this.cautions}}"
+        data-cuisinetype="{{this.cuisineType}}"
+        data-mealtype="{{this.mealType}}"
+        data-ingredients="{{this.ingredients}}"
+        data-calories="{{this.calories}}"
+        data-macros="{{this.macros}}"
+      >
+        <div id="label" class="mr-4">{{this.label}}</div>
+        <img
+          src="{{this.image}}"
+          alt="{{this.label}}"
+          class="h-16 w-16 object-contain rounded"
+        />
+
+      </div>
+
+    {{/each}}
+
+    <!-- Saved recipes will be populated here -->
+
+    {{! <
+    p id="no-saved-recipes">You Have No Saved Recipes</p> }}
   </div>
 
 </section>

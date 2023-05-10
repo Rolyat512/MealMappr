@@ -70,72 +70,34 @@ const searchRecipes = async (event) => {
   }
 };
 
-const getSavedRecipes = async () => {
-  try {
-    const response = await fetch("/users/myrecipes");
-
-    if (response.status === 200) {
-      const recipes = await response.json();
-      console.log(response);
-      console.log("------");
-      console.log(recipes);
-      return recipes;
-    } else {
-      throw new Error("Failed to fetch saved recipes");
-    }
-  } catch (error) {
-    console.error("Error fetching saved recipes:", error);
-  }
-};
-
-const displaySavedRecipes = async () => {
-  const recipes = await getSavedRecipes();
-  console.log(recipes);
-  //get handle on container
-  $("#saved-recipes").empty();
-  //create div for each saved recipe we recieve from the api
-  recipes.forEach((recipe) => {
-    const recipeDiv = $("<div>").addClass(
-      "cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
-    );
-    const labelDiv = $("<div>").html(recipe.recipe.label).addClass("mr-4");
-    const image = $("<img>")
-      .attr({
-        src: recipe.recipe.image,
-        alt: recipe.recipe.label,
-      })
-      .addClass("h-16 w-16 object-contain rounded");
-    recipeDiv.append(labelDiv, image);
-    recipeDiv.on("click", () => displayRecipeModal(recipe.recipe));
-    $("#saved-recipes").append(recipeDiv);
-  });
-  //each div should display the same as a searched recipe div
-};
-
-displaySavedRecipes();
-
 $("form").on("submit", searchRecipes);
 $("#closeModal").on("click", () => $("#recipe-modal").addClass("hidden"));
 
 $("#save-recipe").on("click", async () => {
-  const newRecipe = {
-    label: $("#recipe-title").text(),
-    image: $("#recipe-image").attr("src"),
-    dietLables: $("#diet-labels").text(),
-    healthLables: $("#health-labels").text(),
-
-    cautions: $("#cautions").text(),
-    ingredients: $("#ingredient-list").html(),
-    calories: Math.round(parseInt($("#calories").text(), 10)),
-    cuisineType: $("#cuisine-type").text(),
-    mealType: $("#meal-type").text(),
-    macros: $("#macros").html(),
-    //user_id: req.session.user_id,
-  };
-  console.log(newRecipe);
-  console.log("---------");
+  //validate recipe data
 
   try {
+    //Collect recipe data
+    const newRecipe = {
+      label: $("#recipe-title").text(),
+      image: $("#recipe-image").attr("src"),
+      dietLabels: $("#diet-labels").text(), // Fixed the typo here
+      healthLabels: $("#health-labels").text(), // Fixed the typo here
+
+      cautions: $("#cautions").text(),
+      ingredients: $("#ingredient-list").html(),
+      calories: Math.round(parseInt($("#calories").text(), 10)),
+      cuisineType: $("#cuisine-type").text(),
+      mealType: $("#meal-type").text(),
+      macros: $("#macros").html(),
+      //user_id: userId,
+    };
+
+    console.log(newRecipe);
+
+    //TODO:validate recipe data
+
+    //send post request with recipe data
     const response = await fetch("/users/myrecipes", {
       method: "POST",
       headers: {
@@ -144,18 +106,34 @@ $("#save-recipe").on("click", async () => {
       body: JSON.stringify(newRecipe),
     });
     // If the meal was successfully added, the new event is added to the calendar and the modal is closed
-    if (response.status === 200) {
+    if (response.ok) {
       const savedRecipe = await response.json();
       console.log(savedRecipe);
       console.log("Youre recipe was SAVED!");
       $("#recipe-modal").addClass("hidden");
-      $("#saved-recipes").empty();
-
-      displaySavedRecipes();
+      window.location.reload();
     } else {
       throw new Error("Failed to save recipe");
     }
   } catch (error) {
     console.error("Error saving recipe:", error);
   }
+
+  // Call the displaySavedRecipes function outside of the if statement
+  //displaySavedRecipes();
 });
+
+const savedRecipeDivs = $(".saved-recipe-div");
+
+savedRecipeDivs.each((index, div) => {
+  $(div).on("click", (event) => {
+    displaySavedRecipe(event.currentTarget);
+  });
+});
+
+const displaySavedRecipe = (clickedDiv) => {
+  //TODO: call GET route for recipe based on recipe ID
+
+  // Perform actions with the data attributes
+  console.log("You clicked a div!");
+};
