@@ -8,8 +8,11 @@ const withAuth = require("../../utils/auth");
 router.get("/signup", async (req, res) => {
   try {
     if (req.session.loggedIn) {
-      res.redirect("/home");
-      return;
+      const user = await User.findByPk(req.session.userId);
+      if (user) {
+        res.redirect("/home");
+        return;
+      }
     }
     res.render("signup"); //this will be for redner the welcome handlebars layout when the site first loads
   } catch (err) {
@@ -153,35 +156,5 @@ router.delete("/settings", withAuth, async (req, res) => {
     console.log(err);
   }
 });
-
-// // just for testing
-// router.get("/all", async (req, res) => {
-//   try {
-//     const user = await User.findAll();
-//     res.status(200).json(user);
-//   } catch (err) {
-//     res.status(400).json({ message: "No page found" });
-//     console.log(err);
-//   }
-// });
-
-// // just for testing
-// router.get("/all/meals", async (req, res) => {
-//   try {
-//     const user = await Meal.findAll({
-//       include: [{ model: User, attributes: ["id"] }],
-//       raw: true,
-//       nest: true,
-//     });
-//     res.status(200).json(user);
-//     // res.render("homepage", {
-//     //   isLoggedIn: req.session.loggedIn,
-//     //   user
-//     // })
-//   } catch (err) {
-//     res.status(400).json({ message: "No page found" });
-//     console.log(err);
-//   }
-// });
 
 module.exports = router;

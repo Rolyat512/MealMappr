@@ -75,6 +75,7 @@ The following technologies were used to develop Meal Mappr:<br>
 <strong>Other</strong>
 
 - Node.js
+- Node mailer 
 
 
 <br>

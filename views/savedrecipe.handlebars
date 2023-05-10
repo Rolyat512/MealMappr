@@ -1,0 +1,53 @@
+<div class="container  mx-auto py-10">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full mx-auto">
+    <h2 class="font-bold text-4xl my-4">{{recipe.label}}</h2>
+    <div class="flex flex-wrap justify-between">
+      <div class="w-full flex items-center lg:w-1/3">
+        <img
+          src="{{recipe.image}}"
+          class="w-full h-auto rounded-lg mb-4"
+          alt="{{recipe.label}}"
+        />
+      </div>
+      <div class="w-full lg:w-2/3 pl-4">
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Diet Labels:</p>
+          <p class="text-right ml-2">{{recipe.dietLabels}}</p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Health Labels:</p>
+          <p class="text-right ml-2">{{recipe.healthLabels}}</p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Cautions:</p>
+          <p class="ml-2 text-right">{{recipe.cautions}}</p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Cuisine Type:</p>
+          <p class="ml-2 text-right">{{recipe.cuisineType}}</p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Meal Type:</p>
+          <p class="ml-2 text-right">{{recipe.mealType}}</p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Ingredients:</p>
+          {{#each (split recipe.ingredients "\n") as |ingredient|}}
+            <p class="ml-2 text-right">{{ingredient}}</p>
+          {{/each}}
+
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Calories:</p>
+          <p class="ml-2 text-right">{{recipe.calories}}</p>
+        </div>
+        <div class="flex text-center items-start justify-between mb-2">
+          <p class="font-semibold text-lg">Macros:</p>
+          {{#each (split recipe.macros "\n") as |macro|}}
+            <p class="ml-2 text-right">{{macro}}</p>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
