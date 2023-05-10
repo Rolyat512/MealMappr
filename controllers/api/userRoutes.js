@@ -73,7 +73,9 @@ router.post("/login", async (req, res) => {
     req.session.save(() => {
       req.session.userId = dbUserData.id; // gets the user ID at login // confirmed working
       req.session.loggedIn = true;
-      //req.session.user_id = dbUserData.id; // Set the user_id in the session
+
+      req.session.user_id = dbUserData.id; // Set the user_id in the sessio
+
 
       res
         .status(200)
@@ -120,7 +122,7 @@ router.put('/settings', withAuth, async (req,res) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      // id: req.session.userId
+      // id: req.session.user_id
     },
       {where: {id: req.session.userId}} 
       );
