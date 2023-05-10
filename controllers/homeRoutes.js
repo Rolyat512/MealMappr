@@ -22,29 +22,34 @@ router.get("/", async (req, res) => {
 // route: /home
 router.get("/home", withAuth, async (req, res) => {
   try {
-    res.render("homepage", { 
-      isLoggedIn: req.session.loggedIn,
-    }); //this will be for redner the home handlebars layout
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.userId, {
+      attributes: { exclude: ["password"] },
+      //include: [{ model: Meal }],
+    });
+    const user = await userData.get({ plain: true });
+
+    res.render("homepage", { ...user, loggedIn: true }); //this will be for redner the home handlebars layout
   } catch (err) {
     res.status(400).json({ message: "No homepage found" });
     console.log(err);
   }
 });
 
-router.get("/reportanissue", async (req, res) => {
-  try {
-    //res.json({message: 'This will be the home page after user is logged in'} )
-    res.render("reportissue", { isLoggedIn: req.session.loggedIn }); //this will be for redner the home handlebars layout
-  } catch (err) {
-    res.status(400).json({ message: "No homepage found" });
-    console.log(err);
-  }
-});
+// router.get("/reportanissue", async (req, res) => {
+//   try {
+//     //res.json({message: 'This will be the home page after user is logged in'} )
+//     res.render("reportissue", { loggedIn: true });
+//   } catch (err) {
+//     res.status(400).json({ message: "No homepage found" });
+//     console.log(err);
+//   }
+// });
 
 router.get("/settings", withAuth, async (req, res) => {
   try {
     //res.json({message: 'This will be the home page after user is logged in'} )
-    res.render("settings", { isLoggedIn: req.session.loggedIn }); //this will be for redner the home handlebars layout
+    res.render("settings", { loggedIn: true }); //this will be for redner the home handlebars layout
   } catch (err) {
     res.status(400).json({ message: "No homepage found" });
     console.log(err);
@@ -53,7 +58,11 @@ router.get("/settings", withAuth, async (req, res) => {
 
 router.get("/about", async (req, res) => {
   try {
-    res.render("about"); //this will be for redner the home handlebars layout
+    if (req.session.loggedIn) {
+      res.render("about", { loggedIn: true });
+    } else {
+      res.render("about"); //this will be for redner the home handlebars layout
+    }
   } catch (err) {
     res.status(400).json({ message: "No homepage found" });
     console.log(err);
@@ -62,7 +71,11 @@ router.get("/about", async (req, res) => {
 
 router.get("/contact", async (req, res) => {
   try {
-    res.render("contact"); //this will be for redner the home handlebars layout
+    if (req.session.loggedIn) {
+      res.render("contact", { loggedIn: true }); //this will be for redner the home handlebars layout
+    } else {
+      res.render("contact"); //this will be for redner the home handlebars layout
+    }
   } catch (err) {
     res.status(400).json({ message: "No homepage found" });
     console.log(err);
@@ -71,37 +84,35 @@ router.get("/contact", async (req, res) => {
 
 router.get("/faq", async (req, res) => {
   try {
-    res.render("faq"); //this will be for redner the home handlebars layout
+    if (req.session.loggedIn) {
+      res.render("faq", { loggedIn: true }); //this will be for redner the home handlebars layout
+    } else {
+      res.render("faq"); //this will be for redner the home handlebars layout
+    }
   } catch (err) {
     res.status(400).json({ message: "No homepage found" });
     console.log(err);
   }
 });
 
-
 router.get("/myrecipes", withAuth, async (req, res) => {
   try {
-
     const recipeData = await Recipe.findAll({
       where: {
         user_id: req.session.userId,
       },
     });
 
-    const recipes = recipeData.map((recipe) =>
-      recipe.get({ plain: true })
-    );
+    const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
 
     res.render("recipes", {
       recipes,
-      isLoggedIn: req.session.loggedIn,
-      
+      loggedIn: true,
     });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
 });
-
 
 module.exports = router;
