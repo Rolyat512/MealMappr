@@ -7,7 +7,7 @@ const call3rdPtyApi = async (query) => {
     },
   };
   const response = await fetch(
-    `https://edamam-recipe-search.p.rapidapi.com/search?q=${query}`,
+    `https://edamam-recipe-search.p.rapidapi.com/api/recipes/v2?type=public&field%5B0%5D=uri&q=${query}`,
     options
   );
   const data = await response.json();
