@@ -5,22 +5,22 @@ const signupFormHandler = async (event) => {
   const password = $("#password-signup").val().trim();
   const confirmpassword = $("#confirmpassword-signup").val().trim();
 
-
   if (name && email && password && confirmpassword) {
     if (password !== confirmpassword) {
       alert("Passwords don't match. Try again.");
-    } 
-    if (password.length < 8) {
-      alert("Please enter a password 8 characters or longer")
+      return;
     }
-    else {
+    if (password.length < 8) {
+      alert("Please enter a password 8 characters or longer");
+      return
+    } else {
       const response = await fetch("/users/signup", {
         method: "POST",
         body: JSON.stringify({ name, email, password }),
         headers: { "Content-Type": "application/json" },
       });
       if (response.ok) {
-        document.location.replace('/home');
+        document.location.replace("/home");
       } else {
         alert("Page not redirected, please try again");
       }
