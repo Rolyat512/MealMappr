@@ -1,9 +1,9 @@
-<div class="mx-12 h-screen">
-  <section class="pt-8 my-5 text-center">
+<div class="mx-5 min-h-screen">
+  <section class="my-5 text-center">
     <h1 class="font-bold text-4xl mb-4">My Recipes</h1>
-    <p class="text-xl mb-8">Search, save, and manage your favorite recipes</p>
+    <p class="text-xl mb-4">Search, save, and manage your favorite recipes</p>
   </section>
-  <section class="mx-5">
+  <section class="">
     <h2 class="text-2xl font-semibold mb-4">Search for recipes:</h2>
     <form class="flex items-center mb-6">
       <input
@@ -47,7 +47,8 @@
         {{/each}}
       </div>
     {{else}}
-      <label class="text-center w-full">You haven't saved any recipes yet. Please search for a recipe above</label>
+      <label class="text-center w-full">You haven't saved any recipes yet.
+        Please search for a recipe above</label>
     {{/if}}
 
     <!-- Saved recipes will be populated here -->

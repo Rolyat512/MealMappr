@@ -47,13 +47,12 @@ const searchRecipes = async (event) => {
       $("#recipe-results").html("Loading...");
 
       const recipes = await call3rdPtyApi(query);
-
       $("#recipe-results").empty();
       recipes.forEach((recipe) => {
         const recipeDiv = $("<div>").addClass(
           "cursor-pointer p-5 bg-blue-500 flex justify-center items-center hover:bg-blue-700 text-white rounded shadow-md"
         );
-        const labelDiv = $("<div>").html(recipe.recipe.label).addClass("mr-4");
+        const labelDiv = $("<div>").html(recipe.recipe.label).addClass("mr-4 text-sm xl:text-lg");
         const image = $("<img>")
           .attr({
             src: recipe.recipe.image,
