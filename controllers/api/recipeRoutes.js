@@ -35,11 +35,37 @@ router.get("/myrecipes/:id", withAuth, async (req, res) => {
       return;
     }
 
-     // Get the plain object from the Sequelize instance
-     const recipe = recipeData.get({ plain: true });
+    // Get the plain object from the Sequelize instance
+    const recipe = recipeData.get({ plain: true });
 
     res.render("savedrecipe", { recipe, loggedIn: true });
   } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Corrected delete route
+router.delete("/myrecipes/:id", withAuth, async (req, res) => {
+  try {
+    // Validate the id
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) {
+      return res.status(400).json({ message: "Invalid id." });
+    }
+    const deletedRecipe = await Recipe.destroy({
+      where: {
+        id: id,
+      },
+    });
+    console.log(id);
+    console.log("Recipe Deleted");
+    if (deletedRecipe) {
+      res.status(200).json({ message: 'Recipe deleted' });
+    } else {
+      res.status(404).json({ message: 'Recipe not found' });
+    }
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
