@@ -17,7 +17,7 @@ const hbs = exphbs.create({ helpers });
 const sess = {
   secret: process.env.COOKIESECRET,
   cookie: {
-    maxAge: 15 * 60 * 1000,
+    maxAge: 15 * 60 * 6000,
     httpOnly: true, // helps prevent some XSS attacks
     secure: false, // not requiring a https request to send this cookie back and forth for localhost, should be set to true though, maybe change after project is done?
     sameSite: "strict",
